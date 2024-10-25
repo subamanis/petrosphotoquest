@@ -1,0 +1,17 @@
+.nav-link {
+  @apply relative py-1;
+}
+
+.nav-link::after {
+  @apply content-[''] absolute bottom-0 left-1/2 w-0 h-[1px] bg-white transition-all duration-300;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  @apply w-full;
+}
+
+.nav-link.active {
+  @apply font-medium;
+}

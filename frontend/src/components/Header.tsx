@@ -1,24 +1,32 @@
 import React from 'react';
 import { Instagram } from 'lucide-react';
+import "./Header.scss"
+import {useLocation} from "./useLocation.ts";
 
 const Header = () => {
+  const currentPath = useLocation();
+
+  const isActive = (path: string) => {
+    return currentPath === path;
+  };
+
   return (
-    <header className="bg-[#2e2e2e] text-white py-6 px-8">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="bg-[#2e2e2e] text-white py-5">
+      <div className="flex w-[92%] mr-auto ml-auto justify-between items-center">
         {/* Logo/Name Section */}
-        <div className="flex flex-col">
-          <span className="text-2xl font-light tracking-wider">Petros Papatheodorou</span>
+        <div className="flex flex-col justify-start cursor-pointer">
+          <span className="text-2xl tracking-wider">Petros Papatheodorou</span>
           <span className="mr-auto ml-auto text-sm tracking-[0.3em] mt-1 text-gray-300">PHOTOGRAPHY</span>
         </div>
 
         {/* Navigation Section */}
-        <div className="flex items-center space-x-8">
-          <nav className="flex space-x-6 items-center">
-            <a href="/" className="hover:text-gray-300 transition-colors">Home</a>
-            <a href="/professional" className="hover:text-gray-300 transition-colors">Professional</a>
-            <a href="/personal" className="hover:text-gray-300 transition-colors">Personal</a>
-            <a href="/buy" className="hover:text-gray-300 transition-colors">Buy</a>
-            <a href="/contact" className="hover:text-gray-300 transition-colors">Contact</a>
+        <div className="flex justify-end items-center space-x-10">
+          <nav className="flex space-x-10 items-center">
+            <a href="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</a>
+            <a href="/services" className={`nav-link ${isActive('/services') ? 'active' : ''}`}>Services</a>
+            <a href="/personal" className={`nav-link ${isActive('/personal') ? 'active' : ''}`}>Personal</a>
+            <a href="/shop" className={`nav-link ${isActive('/shop') ? 'active' : ''}`}>Shop</a>
+            <a href="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</a>
           </nav>
           <a
             href="https://instagram.com"
