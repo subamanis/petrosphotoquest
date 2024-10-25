@@ -25,7 +25,7 @@ const HomePage = () => {
     };
   }, [startSlideTimer]);
 
-  // TODO: fix bug with carousel not reseting interval
+  // TODO: fix bug with carousel not resting interval
   const goToImage = (index: number) => {
     setCurrentImageIndex(index);
     // Clear existing interval and start a new one

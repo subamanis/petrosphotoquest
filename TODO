@@ -1,0 +1,7 @@
+Front
+------------
+
+===> HomePage <===
+- Find hero images and resize
+- Fix Carousel transition bug
+- Put Hero Images inside folder and make the app grab all images from folder
