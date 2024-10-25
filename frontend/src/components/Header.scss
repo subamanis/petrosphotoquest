@@ -1,17 +1,23 @@
-.nav-link {
-  @apply relative py-1;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.nav-link::after {
-  @apply content-[''] absolute bottom-0 left-1/2 w-0 h-[1px] bg-white transition-all duration-300;
-  transform: translateX(-50%);
-}
+@layer components {
+  .nav-link {
+    @apply relative py-1 hover:text-gray-300 transition-colors;
+  }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  @apply w-full;
-}
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-1/2 w-0 h-[1px] bg-white transition-all duration-300;
+    transform: translateX(-50%);
+  }
 
-.nav-link.active {
-  @apply font-medium;
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .nav-link.active {
+    @apply font-medium;
+  }
 }
