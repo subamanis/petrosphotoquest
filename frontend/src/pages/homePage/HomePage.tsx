@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import {Link} from "react-router-dom";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -91,6 +92,47 @@ const HomePage = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Services Promotion */}
+      <section className="bg-[#2e2e2e] text-white py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="aspect-[4/3] relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?auto=format&fit=crop&q=80"
+                alt="Professional photography services"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+            <div className="space-y-6">
+              <h2 className="text-3xl font-light">Professional Services</h2>
+              <p className="text-gray-300 leading-relaxed text-lg">
+                From intimate weddings to large corporate events, I offer a range of professional
+                photography services tailored to your specific needs. Let's create something
+                extraordinary together.
+              </p>
+              <div className="space-y-4">
+                <div className="text-gray-300">
+                  <span className="block mb-2">Available for:</span>
+                  <ul className="grid grid-cols-2 gap-2">
+                    <li>• Weddings</li>
+                    <li>• Portraits</li>
+                    <li>• Corporate Events</li>
+                    <li>• Commercial</li>
+                  </ul>
+                </div>
+                <Link
+                  to="/services"
+                  className="inline-block border border-white px-8 py-3 hover:bg-white hover:text-[#2e2e2e] transition-colors"
+                >
+                  View Services
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import "./Header.scss";
-import "../styles/global.scss"
+import "../../styles/global.scss"
 
 const Header = () => {
   const location = useLocation();
@@ -29,8 +29,9 @@ const Header = () => {
             <Link to="/services" className={`nav-link ${isActive('/services') ? 'active' : ''}`}>
               Services
             </Link>
-            <Link to="/personal" className={`nav-link ${isActive('/personal') ? 'active' : ''}`}>
-              Personal
+            <Link to="/projects" className={`nav-link ${isActive('/projectsPage') ? 'active' : ''}`}>
+              Projects
+
             </Link>
             <Link to="/shop" className={`nav-link ${isActive('/shop') ? 'active' : ''}`}>
               Shop
