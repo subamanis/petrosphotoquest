@@ -147,9 +147,6 @@ const HomePage = () => {
                 the essence of moments that tell your unique story. My approach combines technical
                 expertise with artistic vision to create compelling visual narratives.
               </p>
-              <button className="border border-gray-900 px-6 py-2 hover:bg-gray-900 hover:text-white transition-colors">
-                Learn More
-              </button>
             </div>
             <div className="aspect-square">
               <img
