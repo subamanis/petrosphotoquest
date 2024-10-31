@@ -1,6 +1,7 @@
 import React from 'react';
 import {services} from "./servicesData.ts";
 import {Link} from "react-router-dom";
+import ConsentNotice from "../../components/consentNotice/ConsentNotice";
 
 const ServiceCard = ({ title, description, image }: { title: string; description: string; image: string }) => (
   <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1">
@@ -49,6 +50,10 @@ const ServicesPage = () => {
             </Link>
           ))}
         </div>
+      </div>
+
+      <div className="mt-16 max-w-3xl mx-auto">
+        <ConsentNotice />
       </div>
 
       {/* Booking Section */}
