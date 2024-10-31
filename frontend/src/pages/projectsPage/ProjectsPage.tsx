@@ -15,8 +15,8 @@ const ProjectsPage = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-[100em] mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {projects.map((project) => (
             <ProjectPreviewDetailed key={project.id} project={project} />
           ))}

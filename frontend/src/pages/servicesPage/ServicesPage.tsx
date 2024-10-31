@@ -59,7 +59,7 @@ const ServicesPage = () => {
       {/* Booking Section */}
       <div className="mt-20 bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-light mb-6">Ready to Book?</h2>
+          <h2 className="text-3xl font-light mb-6">Custom Request?</h2>
           <p className="text-gray-600 mb-8">
             Let's discuss your photography needs and create a custom package that's perfect for you.
           </p>
