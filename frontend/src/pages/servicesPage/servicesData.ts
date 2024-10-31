@@ -50,7 +50,7 @@ export const services: Service[] = [
       {
         name: 'Premium',
         price: '$3,800',
-        description: 'Our most popular package for full wedding days',
+        description: 'My most popular package for full wedding days',
         isPopular: true,
         features: [
           '8 hours of coverage',
@@ -128,7 +128,7 @@ export const services: Service[] = [
       {
         name: 'Premium',
         price: '$3,800',
-        description: 'Our most popular package for full wedding days',
+        description: 'My most popular package for full wedding days',
         isPopular: true,
         features: [
           '8 hours of coverage',

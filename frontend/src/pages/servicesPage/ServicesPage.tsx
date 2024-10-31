@@ -20,7 +20,7 @@ const ServicesPage = () => {
     <div className="py-12">
       {/* Services Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-light mb-4">Our Services</h1>
+        <h1 className="text-4xl font-light mb-4">Services</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Professional photography services tailored to your needs. Each service is customizable
           to ensure we capture your vision perfectly.
