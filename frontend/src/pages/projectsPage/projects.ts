@@ -1,4 +1,4 @@
-import { PhotoProject } from '../../types/photoProject';
+import { PhotoProject } from '../../types/PhotoProject.ts';
 
 export const projects: PhotoProject[] = [
   {

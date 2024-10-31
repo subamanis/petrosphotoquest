@@ -1,4 +1,6 @@
 import React from 'react';
+import {services} from "./servicesData.ts";
+import {Link} from "react-router-dom";
 
 const ServiceCard = ({ title, description, image }: { title: string; description: string; image: string }) => (
   <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1">
@@ -13,29 +15,6 @@ const ServiceCard = ({ title, description, image }: { title: string; description
 );
 
 const ServicesPage = () => {
-  const services = [
-    {
-      title: "Wedding Photography",
-      description: "Capturing your special day with a perfect blend of candid moments and artistic portraits.",
-      image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80"
-    },
-    {
-      title: "Portrait Sessions",
-      description: "Professional portraits that capture your personality and tell your unique story.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80"
-    },
-    {
-      title: "Commercial Photography",
-      description: "High-quality commercial photography for your business needs and brand identity.",
-      image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80"
-    },
-    {
-      title: "Event Coverage",
-      description: "Comprehensive event coverage ensuring no meaningful moment goes uncaptured.",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80"
-    }
-  ];
-
   return (
     <div className="py-12">
       {/* Services Header */}
@@ -50,8 +29,24 @@ const ServicesPage = () => {
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to={`/services/${service.id}`}
+              className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1"
+            >
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={service.coverImage}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
