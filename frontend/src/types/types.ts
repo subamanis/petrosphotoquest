@@ -27,19 +27,30 @@ export interface ServicePackage {
   preselectedOptions?: string[];
 }
 
-
-export interface ServiceOption {
-  id: string;
-  label: string;
-  price: number;
-}
-
 export interface ServiceOptionGroup {
   id: string;
   name: string;
   description?: string;
   type: 'single' | 'multiple';
   options: ServiceOption[];
+}
+
+export interface ServiceOption {
+  id: string;
+  label: string;
+  price: number;
+  allowQuantity?: boolean;
+  maxQuantity?: number;
+}
+
+export interface DiscountTier {
+  minOptions: number;
+  percentage: number;
+  color: string;
+}
+
+export interface OptionQuantity {
+  [key: string]: number;
 }
 
 // ==================================================

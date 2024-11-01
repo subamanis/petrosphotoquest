@@ -1,4 +1,4 @@
-import { Service } from '../../types/types.ts';
+import { Service } from './types';
 
 export const services: Service[] = [
   {
@@ -24,14 +24,6 @@ export const services: Service[] = [
       { url: 'https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&q=80', caption: 'Bridal Party' },
       { url: 'https://images.unsplash.com/photo-1525772764200-be829a350797?auto=format&fit=crop&q=80', caption: 'Reception' },
       { url: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&q=80', caption: 'Getting Ready' }
-    ],
-    highlights: [
-      'Complimentary engagement session',
-      'Multiple photographer coverage',
-      'High-resolution digital images',
-      'Online gallery sharing',
-      'Professional editing and color correction',
-      'Print rights included'
     ],
     basePrice: 1500,
     options: [
@@ -64,10 +56,10 @@ export const services: Service[] = [
         description: 'Choose from our selection of premium photo albums',
         type: 'multiple',
         options: [
-          { id: 'album-small', label: 'Classic Album (20x30cm, 20 pages)', price: 300 },
-          { id: 'album-medium', label: 'Premium Album (30x40cm, 30 pages)', price: 500 },
-          { id: 'album-large', label: 'Luxury Album (40x50cm, 40 pages)', price: 800 },
-          { id: 'album-parents', label: 'Two Parent Albums (15x20cm)', price: 400 }
+          { id: 'album-small', label: 'Classic Album (20x30cm, 20 pages)', price: 300, allowQuantity: true, maxQuantity: 5 },
+          { id: 'album-medium', label: 'Premium Album (30x40cm, 30 pages)', price: 500, allowQuantity: true, maxQuantity: 3 },
+          { id: 'album-large', label: 'Luxury Album (40x50cm, 40 pages)', price: 800, allowQuantity: true, maxQuantity: 2 },
+          { id: 'album-parents', label: 'Two Parent Albums (15x20cm)', price: 400, allowQuantity: true, maxQuantity: 3 }
         ]
       },
       {
@@ -76,10 +68,10 @@ export const services: Service[] = [
         description: 'Beautiful prints and wall art for your home',
         type: 'multiple',
         options: [
-          { id: 'print-large', label: 'Large Framed Print (60x90cm)', price: 400 },
-          { id: 'print-canvas', label: 'Canvas Gallery Wrap (80x120cm)', price: 500 },
-          { id: 'print-metal', label: 'Metal Print (70x100cm)', price: 600 },
-          { id: 'print-collection', label: 'Print Collection (10 8x10" prints)', price: 200 }
+          { id: 'print-large', label: 'Large Framed Print (60x90cm)', price: 400, allowQuantity: true, maxQuantity: 3 },
+          { id: 'print-canvas', label: 'Canvas Gallery Wrap (80x120cm)', price: 500, allowQuantity: true, maxQuantity: 3 },
+          { id: 'print-metal', label: 'Metal Print (70x100cm)', price: 600, allowQuantity: true, maxQuantity: 3 },
+          { id: 'print-collection', label: 'Print Collection (10 8x10" prints)', price: 200, allowQuantity: true, maxQuantity: 5 }
         ]
       },
       {
@@ -90,31 +82,43 @@ export const services: Service[] = [
         options: [
           { id: 'extra-engagement', label: 'Engagement Session (2 hours)', price: 400 },
           { id: 'extra-second', label: 'Second Photographer', price: 600 },
-          { id: 'extra-usb', label: 'Custom USB Box with Prints', price: 250 },
+          { id: 'extra-usb', label: 'Custom USB Box with Prints', price: 250, allowQuantity: true, maxQuantity: 3 },
           { id: 'extra-slideshow', label: 'Multimedia Slideshow', price: 200 }
         ]
       }
+    ],
+    highlights: [
+      'Complimentary engagement session',
+      'Multiple photographer coverage',
+      'High-resolution digital images',
+      'Online gallery sharing',
+      'Professional editing and color correction',
+      'Print rights included'
     ],
     packages: [
       {
         name: 'Essential',
         price: '$2,500',
         description: 'Perfect for intimate weddings and elopements',
-        preselectedOptions: ['coverage-6', 'photos-300', 'extra-usb'],
         features: [
           '6 hours of coverage',
-          'Single photographer',
           '300+ edited digital images',
-          'Online gallery',
-          'Print release',
           'Custom USB Box'
-        ]
+        ],
+        preselectedOptions: ['coverage-6', 'photos-300', 'extra-usb']
       },
       {
         name: 'Premium',
         price: '$3,800',
         description: 'Our most popular package for full wedding days',
         isPopular: true,
+        features: [
+          '8 hours of coverage',
+          '450+ edited digital images',
+          'Premium Album (30x40cm)',
+          'Engagement Session',
+          'Custom USB Box'
+        ],
         preselectedOptions: [
           'coverage-8',
           'photos-450',
@@ -122,20 +126,23 @@ export const services: Service[] = [
           'extra-engagement',
           'extra-second',
           'extra-usb'
-        ],
-        features: [
-          '8 hours of coverage',
-          'Two photographers',
-          '500+ edited digital images',
-          'Premium Album (30x40cm)',
-          'Engagement Session',
-          'Custom USB Box'
         ]
       },
       {
         name: 'Luxury',
         price: '$5,500',
         description: 'Complete coverage for your perfect day',
+        features: [
+          '12 hours of coverage',
+          '600+ edited digital images',
+          'Luxury Album (40x50cm)',
+          'Parent Albums',
+          'Large Framed Print',
+          'Canvas Gallery Wrap',
+          'Engagement Session',
+          'Custom USB Box',
+          'Multimedia Slideshow'
+        ],
         preselectedOptions: [
           'coverage-12',
           'photos-600',
@@ -147,18 +154,6 @@ export const services: Service[] = [
           'extra-second',
           'extra-usb',
           'extra-slideshow'
-        ],
-        features: [
-          '12 hours of coverage',
-          'Two photographers',
-          '600+ edited digital images',
-          'Luxury Album (40x50cm)',
-          'Parent Albums',
-          'Large Framed Print',
-          'Canvas Gallery Wrap',
-          'Engagement Session',
-          'Custom USB Box',
-          'Multimedia Slideshow'
         ]
       }
     ]

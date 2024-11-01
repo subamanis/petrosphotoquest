@@ -1,36 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import {Check, AlertCircle, Package} from 'lucide-react';
-import { Service, ServiceOptionGroup } from '../../types/types.ts';
+import { Package, AlertCircle } from 'lucide-react';
+import { Service, DiscountTier, OptionQuantity } from '../../types/types.ts';
+import OptionGroup from './option/OptionGroup';
+import DiscountRibbon from './DiscountRibbon';
 
 interface PackageBuilderProps {
   service: Service;
-  onPackageSelect: (packageName: string) => void;
-}
-
-interface DiscountTier {
-  minOptions: number;
-  percentage: number;
+  onPackageSelect: (packageName: string | null) => void;
 }
 
 const DISCOUNT_TIERS: DiscountTier[] = [
-  { minOptions: 8, percentage: 15 },
-  { minOptions: 5, percentage: 10 },
-  { minOptions: 3, percentage: 5 },
+  { minOptions: 5, percentage: 5, color: 'blue' },
+  { minOptions: 7, percentage: 8, color: 'green' },
+  { minOptions: 9, percentage: 12, color: 'magenta' },
 ];
+
+const colorMap = {
+  blue: 'rgb(59, 130, 246)',
+  green: 'rgb(34, 197, 94)',
+  magenta: 'rgb(231,84,214)'
+};
 
 const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelect }) => {
   const [selectedOptions, setSelectedOptions] = useState<Set<string>>(new Set());
+  const [quantities, setQuantities] = useState<OptionQuantity>({});
   const [total, setTotal] = useState(service.basePrice);
   const [nextDiscount, setNextDiscount] = useState<DiscountTier | null>(null);
   const [activePackage, setActivePackage] = useState<string | null>(null);
 
-  const calculateTotal = (options: Set<string>) => {
+  const calculateTotal = (options: Set<string>, optionQuantities: OptionQuantity) => {
     let subtotal = service.basePrice;
 
     service.options.forEach(group => {
       group.options.forEach(option => {
         if (options.has(option.id)) {
-          subtotal += option.price;
+          const quantity = option.allowQuantity ? (optionQuantities[option.id] || 1) : 1;
+          subtotal += option.price * quantity;
         }
       });
     });
@@ -44,21 +49,27 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
   };
 
   const getDiscount = (optionCount: number): number => {
-    for (const tier of DISCOUNT_TIERS) {
-      if (optionCount >= tier.minOptions) {
-        return tier.percentage;
+    for (let i=DISCOUNT_TIERS.length-1; i>=0; i--) {
+      if (optionCount >= DISCOUNT_TIERS[i].minOptions) {
+        return DISCOUNT_TIERS[i].percentage;
       }
     }
     return 0;
   };
 
+  const getDiscountColor = (optionCount: number): 'blue' | 'green' | 'magenta' | '' => {
+    for (let i=DISCOUNT_TIERS.length-1; i>=0; i--) {
+      if (optionCount >= DISCOUNT_TIERS[i].minOptions) {
+        return DISCOUNT_TIERS[i].color as 'blue' | 'green' | 'magenta';
+      }
+    }
+    return '';
+  };
+
   const updateNextDiscount = (currentOptionsCount: number) => {
     for (const tier of DISCOUNT_TIERS) {
       if (currentOptionsCount < tier.minOptions) {
-        setNextDiscount({
-          minOptions: tier.minOptions,
-          percentage: tier.percentage
-        });
+        setNextDiscount(tier);
         return;
       }
     }
@@ -78,11 +89,19 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
 
     if (newSelected.has(optionId)) {
       newSelected.delete(optionId);
+      const newQuantities = { ...quantities };
+      delete newQuantities[optionId];
+      setQuantities(newQuantities);
     } else {
       newSelected.add(optionId);
+      if (service.options
+        .find(g => g.id === groupId)
+        ?.options.find(o => o.id === optionId)
+        ?.allowQuantity) {
+        setQuantities(prev => ({ ...prev, [optionId]: 1 }));
+      }
     }
 
-    // Check if the new selection matches any package
     let matchingPackage = null;
     for (const pkg of service.packages) {
       if (pkg.preselectedOptions &&
@@ -96,16 +115,41 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
     setActivePackage(matchingPackage);
     onPackageSelect(matchingPackage);
     setSelectedOptions(newSelected);
-    setTotal(calculateTotal(newSelected));
+    setTotal(calculateTotal(newSelected, quantities));
     updateNextDiscount(newSelected.size);
+  };
+
+  const handleQuantityChange = (optionId: string, delta: number) => {
+    const option = service.options
+      .flatMap(group => group.options)
+      .find(opt => opt.id === optionId);
+
+    if (!option) return;
+
+    const currentQuantity = quantities[optionId] || 1;
+    const newQuantity = Math.max(1, Math.min(currentQuantity + delta, option.maxQuantity || 99));
+
+    setQuantities(prev => ({ ...prev, [optionId]: newQuantity }));
+    setTotal(calculateTotal(selectedOptions, { ...quantities, [optionId]: newQuantity }));
   };
 
   const handlePackageSelect = (packageName: string) => {
     const pkg = service.packages.find(p => p.name === packageName);
     if (pkg?.preselectedOptions) {
       const newSelected = new Set(pkg.preselectedOptions);
+      const newQuantities: OptionQuantity = {};
+      pkg.preselectedOptions.forEach(optionId => {
+        const option = service.options
+          .flatMap(group => group.options)
+          .find(opt => opt.id === optionId);
+        if (option?.allowQuantity) {
+          newQuantities[optionId] = 1;
+        }
+      });
+
       setSelectedOptions(newSelected);
-      setTotal(calculateTotal(newSelected));
+      setQuantities(newQuantities);
+      setTotal(calculateTotal(newSelected, newQuantities));
       updateNextDiscount(newSelected.size);
       setActivePackage(packageName);
       onPackageSelect(packageName);
@@ -117,6 +161,7 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
   }, []);
 
   const currentDiscount = getDiscount(selectedOptions.size);
+  const discountColor = getDiscountColor(selectedOptions.size);
 
   return (
     <div className="space-y-8">
@@ -124,23 +169,31 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Quick Package Selection</h3>
         <div className="flex flex-wrap gap-4">
-          {service.packages.map((pkg) => (
-            <button
-              key={pkg.name}
-              onClick={() => handlePackageSelect(pkg.name)}
-              className={`px-4 py-2 border-2 rounded-md transition-colors ${
-                activePackage === pkg.name
-                  ? 'border-gray-900 bg-gray-900 text-white'
-                  : 'border-gray-900 hover:bg-gray-900 hover:text-white'
-              }`}
-            >
-              {pkg.name}
-            </button>
-          ))}
+          {service.packages.map((pkg, index) => {
+            const discountPercentage = index === 1 ? 5 : index === 2 ? 10 : 0;
+            const ribbonColor = index === 1 ? 'blue' : index === 2 ? 'green' : 'magenta';
+
+            return (
+              <div key={pkg.name} className="relative">
+                {discountPercentage > 0 && (
+                  <DiscountRibbon percentage={discountPercentage} color={ribbonColor} />
+                )}
+                <button
+                  onClick={() => handlePackageSelect(pkg.name)}
+                  className={`px-4 py-2 border-2 rounded-md transition-colors ${
+                    activePackage === pkg.name
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-900 hover:bg-gray-900 hover:text-white'
+                  }`}
+                >
+                  {pkg.name}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Current Selection Status */}
       <div className="bg-gray-50 p-4 rounded-lg flex items-center text-sm">
         <Package className="w-5 h-5 mr-2 text-gray-600" />
         <span>
@@ -153,43 +206,16 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
         </span>
       </div>
 
-      {/* Options Groups */}
       <div className="space-y-8">
         {service.options.map((group) => (
-          <div key={group.id} className="space-y-4">
-            <div>
-              <h3 className="text-lg font-medium">{group.name}</h3>
-              {group.description && (
-                <p className="text-sm text-gray-600 mt-1">{group.description}</p>
-              )}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {group.options.map((option) => (
-                <label
-                  key={option.id}
-                  className="relative flex items-start p-4 border rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <div className="flex items-center h-5">
-                    <input
-                      type={group.type === 'single' ? 'radio' : 'checkbox'}
-                      name={group.id}
-                      checked={selectedOptions.has(option.id)}
-                      onChange={() => handleOptionChange(group.id, option.id, group.type)}
-                      className="h-4 w-4 border-gray-300 text-gray-900 focus:ring-gray-900"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <span className="block font-medium text-gray-900">
-                      {option.label}
-                    </span>
-                    <span className="block text-sm text-gray-500">
-                      +${option.price}
-                    </span>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
+          <OptionGroup
+            key={group.id}
+            group={group}
+            selectedOptions={selectedOptions}
+            quantities={quantities}
+            onOptionChange={handleOptionChange}
+            onQuantityChange={handleQuantityChange}
+          />
         ))}
       </div>
 
@@ -197,17 +223,28 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
       <div className="bg-gray-50 p-6 rounded-lg">
         <div className="space-y-4">
           {nextDiscount && (
-            <div className="flex items-center text-sm text-gray-600 bg-blue-50 p-3 rounded-md">
-              <AlertCircle className="w-5 h-5 mr-2 text-blue-500" />
-              Add {nextDiscount.minOptions - selectedOptions.size} more options to unlock a {nextDiscount.percentage}% discount!
+            <div
+              className="flex items-center text-sm p-3 rounded-md"
+
+            >
+              <AlertCircle className="w-5 h-5 mr-2" />
+              <span> Add {nextDiscount.minOptions - selectedOptions.size} more options to unlock a </span>
+              <span style={{
+                color: colorMap[nextDiscount.color],
+                marginLeft: '3px'
+              }}
+              > {nextDiscount.percentage} % discount!</span>
             </div>
           )}
 
           <div className="flex justify-between items-center">
             <span className="text-lg">Total Price:</span>
             <div className="text-right">
-              {currentDiscount > 0 && (
-                <span className="block text-sm text-green-600 mb-1">
+              {currentDiscount > 0 && discountColor && (
+                <span
+                  className="block text-sm mb-1"
+                  style={{ color: colorMap[discountColor] }}
+                >
                   {currentDiscount}% discount applied
                 </span>
               )}
@@ -215,9 +252,7 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
             </div>
           </div>
 
-          <button
-            className="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-800 transition-colors"
-          >
+          <button className="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-800 transition-colors">
             Book Now
           </button>
         </div>
