@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
 import { services } from '../servicesData.ts';
+import ConsentNotice from "../../../components/consentNotice/ConsentNotice.tsx";
+import PackageBuilder from "../../../components/packageBuilder/PackageBuilder.tsx";
 
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   const service = services.find(s => s.id === serviceId);
 
@@ -82,6 +85,15 @@ const ServiceDetails = () => {
         )}
       </div>
 
+      {/* Package Builder */}
+      <div className="max-w-[62rem] mx-auto px-12 py-8 mb-12 border-gray-800 border-double border-4">
+        <h2 className="text-2xl font-light mb-8 text-center">Build Your Package</h2>
+        <PackageBuilder
+          service={service}
+          onPackageSelect={setSelectedPackage}
+        />
+      </div>
+
       {/* Highlights */}
       <div className="bg-gray-50 py-16 mb-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -97,45 +109,9 @@ const ServiceDetails = () => {
         </div>
       </div>
 
-      {/* Packages */}
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl font-light mb-8 text-center">Packages</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {service.packages.map((pkg, index) => (
-            <div
-              key={index}
-              className={`relative bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:-translate-y-1 ${
-                pkg.isPopular ? 'border-2 border-gray-900' : ''
-              }`}
-            >
-              {pkg.isPopular && (
-                <div className="absolute top-4 right-4">
-                  <span className="bg-gray-900 text-white text-sm px-3 py-1 rounded-full">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{pkg.name}</h3>
-                <p className="text-gray-600 mb-4">{pkg.description}</p>
-                <p className="text-3xl font-light mb-6">{pkg.price}</p>
-                <ul className="space-y-3">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start">
-                      <Check className="w-5 h-5 text-gray-900 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-6 bg-gray-50 mt-6">
-                <button className="w-full bg-gray-900 text-white py-2 rounded hover:bg-gray-800 transition-colors">
-                  Book Now
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Consent Notice */}
+      <div className="max-w-3xl mx-auto px-4">
+        <ConsentNotice />
       </div>
     </div>
   );
