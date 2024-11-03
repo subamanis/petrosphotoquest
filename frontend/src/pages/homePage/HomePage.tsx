@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {Link} from "react-router-dom";
+import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple.tsx";
+import {projects} from "../projectsPage/projects.ts";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,6 +37,9 @@ const HomePage = () => {
       if (timer) clearInterval(timer);
     };
   };
+
+  // Get first three projects for featured work
+  const featuredProjects = projects.slice(0, 3);
 
   return (
     <div className="space-y-16">
@@ -76,21 +81,12 @@ const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-light mb-8 text-center">Featured Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            'https://images.unsplash.com/photo-1496843916299-590492c751f4?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1469825790477-07f35dfb5246?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&q=80'
-          ].map((image, index) => (
-            <div key={index} className="group relative aspect-square overflow-hidden">
-              <img
-                src={image}
-                alt={`Featured work ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-lg">View Gallery</span>
-              </div>
-            </div>
+          {featuredProjects.map((project, index) => (
+            <ProjectPreviewSimple
+              key={project.id}
+              project={project}
+              textColor="#ffffff"
+            />
           ))}
         </div>
       </section>
@@ -114,19 +110,20 @@ const HomePage = () => {
                 photography services tailored to your specific needs. Let's create something
                 extraordinary together.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-4 flex flex-col">
                 <div className="text-gray-300">
                   <span className="block mb-2">Available for:</span>
                   <ul className="grid grid-cols-2 gap-2">
-                    <li>• Weddings</li>
+                    <li>• Weddings / Christenings</li>
                     <li>• Portraits</li>
                     <li>• Corporate Events</li>
-                    <li>• Commercial</li>
+                    <li>• Product photography</li>
                   </ul>
                 </div>
+                <span className="text-gray-300">and more...</span>
                 <Link
                   to="/services"
-                  className="inline-block border border-white px-8 py-3 hover:bg-white hover:text-[#2e2e2e] transition-colors"
+                  className="inline-block border border-white px-8 py-3 mt-12 hover:bg-white hover:text-[#2e2e2e] transition-colors w-fit"
                 >
                   View Services
                 </Link>
