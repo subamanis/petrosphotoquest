@@ -2,6 +2,20 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from '../projects.ts';
 import { ArrowLeft } from 'lucide-react';
+import ThreeColumnGrid from '../../../components/projectLayouts/ThreeColumnGrid';
+import TwoColumnGrid from '../../../components/projectLayouts/TwoColumnGrid';
+import VerticalScroll from '../../../components/projectLayouts/VerticalScroll';
+import HorizontalScrollSingle from '../../../components/projectLayouts/HorizontalScrollSingle';
+import HorizontalScrollPairs from '../../../components/projectLayouts/HorizontalScrollPairs';
+
+const layoutMap: { [key: string]: React.ComponentType<{ project: any }> } = {
+  'urban-nights': ThreeColumnGrid,
+  'mountain-solitude': TwoColumnGrid,
+  'mountain-solitude2': VerticalScroll,
+  'mountain-solitude3': VerticalScroll,
+  'mountain-solitude4': HorizontalScrollSingle,
+  'mountain-solitude5': HorizontalScrollPairs,
+};
 
 const ProjectPage = () => {
   const { projectId } = useParams();
@@ -23,6 +37,8 @@ const ProjectPage = () => {
       </div>
     );
   }
+
+  const LayoutComponent = layoutMap[project.id] || ThreeColumnGrid;
 
   return (
     <div className="py-12">
@@ -48,24 +64,9 @@ const ProjectPage = () => {
         </div>
       </div>
 
-      {/* Photo Grid */}
+      {/* Photo Grid with Dynamic Layout */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {project.allImages.map((image, index) => (
-            <div key={index} className="group relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-lg">
-                <img
-                  src={image.url}
-                  alt={image.caption || `${project.title} image ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              {image.caption && (
-                <p className="mt-2 text-sm text-gray-600">{image.caption}</p>
-              )}
-            </div>
-          ))}
-        </div>
+        <LayoutComponent project={project} />
       </div>
     </div>
   );
