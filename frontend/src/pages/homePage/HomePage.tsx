@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {Link} from "react-router-dom";
-import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple.tsx";
 import {projects} from "../projectsPage/projects.ts";
+import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple";
+import NewsletterSubscribe from "../../components/newsletterSubscribe/NewsLetterSubscribe";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -132,6 +133,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section */}
+      <NewsletterSubscribe />
 
       {/* About Preview */}
       <section className="bg-gray-50 py-16">
