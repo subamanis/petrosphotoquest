@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {Link} from "react-router-dom";
 import {projects} from "../projectsPage/projects.ts";
 import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple";
-import NewsletterSubscribe from "../../components/newsletterSubscribe/NewsLetterSubscribe";
+import NewsletterSubscribe from "../../components/newsletter/NewsletterSubscribe.tsx";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
