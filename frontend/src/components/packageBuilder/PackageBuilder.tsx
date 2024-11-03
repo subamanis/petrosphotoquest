@@ -4,6 +4,7 @@ import { Service, DiscountTier, OptionQuantity } from '../../types/types.ts';
 import OptionGroup from './option/OptionGroup';
 import DiscountRibbon from './DiscountRibbon';
 import BookingDetails from '../../components/bookingDetails/BookingDetails';
+import SubmissionSuccess from "../submissionSuccess/SubmissionSuccess";
 
 interface PackageBuilderProps {
   service: Service;
@@ -41,6 +42,7 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
   const [showBookingDetails, setShowBookingDetails] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [couponError, setCouponError] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const calculateTotal = (options: Set<string>, optionQuantities: OptionQuantity) => {
     let subtotal = service.basePrice;
@@ -54,15 +56,24 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
       });
     });
 
+    console.log('original subtotal', subtotal);
+
+
     // Apply bundle discount first
     const bundleDiscount = getDiscount(options.size);
     if (bundleDiscount > 0) {
       subtotal = subtotal * (1 - bundleDiscount / 100);
     }
 
+    console.log('subtotal - bundle discount', subtotal);
+
+
     // Apply coupon discount if present
     if (appliedCoupon && COUPONS[appliedCoupon]) {
+      console.log('selected discount: ', COUPONS[appliedCoupon].discount);
+      console.log('subtotal before ', subtotal);
       subtotal = subtotal * (1 - COUPONS[appliedCoupon].discount / 100);
+      console.log('subtotal after ', subtotal);
     }
 
     return Math.round(subtotal);
@@ -200,6 +211,8 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
     await new Promise(resolve => setTimeout(resolve, 2000));
     console.log('Booking submitted:', bookingDetails);
     setIsSubmitting(false);
+    setIsSubmitted(true);
+
     // Handle success/error states
   };
 
@@ -214,6 +227,10 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
 
   const currentDiscount = getDiscount(selectedOptions.size);
   const discountColor = getDiscountColor(selectedOptions.size);
+
+  if (isSubmitted) {
+    return <SubmissionSuccess />;
+  }
 
   return (
     <div className="space-y-8">
@@ -322,27 +339,28 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
             </div>
           )}
 
-          <div className="flex justify-between items-center">
-            <span className="text-lg">Total Price:</span>
-            <div className="text-right space-y-1">
-              {currentDiscount > 0 && discountColor && (
-                <span
-                  className="block text-sm"
-                  style={{ color: colorMap[discountColor] }}
-                >
+          <div className="text-right space-y-1">
+            {currentDiscount > 0 && discountColor && (
+              <span
+                className="block text-sm"
+                style={{ color: colorMap[discountColor] }}
+              >
                   Bundle discount: {currentDiscount}% off
                 </span>
-              )}
-              {appliedCoupon && (
-                <span
-                  className="block text-sm"
-                  style={{ color: colorMap["green"] }}
-                >
+            )}
+            {appliedCoupon && (
+              <span
+                className="block text-sm"
+                style={{ color: colorMap["green"] }}
+              >
                   Coupon discount: {COUPONS[appliedCoupon].discount}% off
                 </span>
-              )}
-              <span className="text-2xl font-semibold">${total}</span>
-            </div>
+            )}
+          </div>
+
+          <div className="flex justify-between items-center">
+            <span className="text-lg">Total Price:</span>
+            <span className="text-2xl font-semibold">${total}</span>
           </div>
 
           <button
