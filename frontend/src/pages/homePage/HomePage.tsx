@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {projects} from "../projectsPage/projects.ts";
 import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple";
 import NewsletterSubscribe from "../../components/newsletter/NewsletterSubscribe.tsx";
+import FloatingNewsletterButton from "../../components/newsletter/FloatingNewsletterButton.tsx";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -43,7 +44,7 @@ const HomePage = () => {
   const featuredProjects = projects.slice(0, 3);
 
   return (
-    <div className="space-y-16">
+    <div>
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
@@ -79,7 +80,7 @@ const HomePage = () => {
       </section>
 
       {/* Featured Work */}
-      <section className="max-w-7xl mx-auto px-4">
+      <section className="max-w-[90rem] mx-auto px-4 pt-16 pb-20">
         <h2 className="text-3xl font-light mb-8 text-center">Featured Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredProjects.map((project, index) => (
@@ -134,11 +135,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <NewsletterSubscribe />
-
       {/* About Preview */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 pt-16 pb-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -159,6 +157,12 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section */}
+      <NewsletterSubscribe />
+
+      {/* Floating Newsletter Button */}
+      <FloatingNewsletterButton />
     </div>
   );
 };

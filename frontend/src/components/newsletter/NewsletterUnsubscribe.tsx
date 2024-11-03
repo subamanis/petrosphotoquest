@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Camera, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const NewsletterUnsubscribe = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +28,11 @@ const NewsletterUnsubscribe = () => {
           <Camera className="w-12 h-12 mx-auto mb-4 text-gray-900" />
           <h3 className="text-2xl font-light mb-2">You've been unsubscribed</h3>
           <p className="text-gray-600">
-            We're sorry to see you go. You can always subscribe again if you change your mind.
+            We're sorry to see you go. You can always{' '}
+            <Link to="/newsletter?mode=subscribe" className="text-gray-900 hover:underline">
+              subscribe
+            </Link>{' '}
+            again if you change your mind.
           </p>
         </div>
       </div>
