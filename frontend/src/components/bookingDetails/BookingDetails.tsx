@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calendar, MapPin, User, Mail, Phone, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +30,8 @@ const getServiceConfig = (serviceId: string) => {
     return {
       requiresLocation: false,
       dateLabel: 'Session Date',
-      infoLabel: 'Session Information'
+      infoLabel: 'Session Information',
+      locationLabel: null,
     };
   }
   return {
@@ -134,7 +135,7 @@ const BookingDetails: React.FC<BookingDetailsProps> = ({ onSubmit, isSubmitting 
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  placeholder={`Enter ${serviceConfig.locationLabel.toLowerCase()}`}
+                  placeholder={`Enter ${serviceConfig.locationLabel!.toLowerCase()}`}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                 />

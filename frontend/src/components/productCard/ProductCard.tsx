@@ -12,8 +12,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       return `$${product.price}`;
     }
     if (product.sizes) {
-      const minPrice = Math.min(...product.sizes.map(s => s.price));
-      const maxPrice = Math.max(...product.sizes.map(s => s.price));
+      const minPrice = Math.min(...product.sizes.map(s => s.basePrice));
+      const maxPrice = Math.max(...product.sizes.map(s => s.framedPrice));
       return `$${minPrice} - $${maxPrice}`;
     }
     return '';

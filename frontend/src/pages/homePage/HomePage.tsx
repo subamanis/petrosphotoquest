@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {Link} from "react-router-dom";
 import {projects} from "../projectsPage/projects.ts";
 import ProjectPreviewSimple from "../../components/projectViewSimple/ProjectViewSimple";
 import NewsletterSubscribe from "../../components/newsletter/NewsletterSubscribe.tsx";
 import FloatingNewsletterButton from "../../components/newsletter/FloatingNewsletterButton.tsx";
+import {useTranslation} from "../../hooks/useTranslation.ts";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t } = useTranslation();
   const heroImages = [
     '/images/hero-1.jpg',
     '/images/hero-2.jpg',
@@ -58,8 +60,8 @@ const HomePage = () => {
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-5xl font-light mb-4">Capturing Moments</h1>
-            <p className="text-xl tracking-wide">Through the lens of artistic expression</p>
+            <h1 className="text-5xl font-light mb-4">{t('home.hero.title')}</h1>
+            <p className="text-xl tracking-wide">{t('home.hero.subtitle')}</p>
           </div>
         </div>
         {/* Image Indicators */}
@@ -81,9 +83,9 @@ const HomePage = () => {
 
       {/* Featured Work */}
       <section className="max-w-[90rem] mx-auto px-4 pt-16 pb-20">
-        <h2 className="text-3xl font-light mb-8 text-center">Featured Work</h2>
+        <h2 className="text-3xl font-light mb-8 text-center">{t('home.featured.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project) => (
             <ProjectPreviewSimple
               key={project.id}
               project={project}
@@ -106,28 +108,26 @@ const HomePage = () => {
               <div className="absolute inset-0 bg-black/20"></div>
             </div>
             <div className="space-y-6">
-              <h2 className="text-3xl font-light">Professional Services</h2>
+              <h2 className="text-3xl font-light">{t('home.services.title')}</h2>
               <p className="text-gray-300 leading-relaxed text-lg">
-                From intimate weddings to large corporate events, I offer a range of professional
-                photography services tailored to your specific needs. Let's create something
-                extraordinary together.
+                {t('home.services.description')}
               </p>
               <div className="space-y-4 flex flex-col">
                 <div className="text-gray-300">
-                  <span className="block mb-2">Available for:</span>
+                  <span className="block mb-2">{t('home.services.available')}</span>
                   <ul className="grid grid-cols-2 gap-2">
-                    <li>• Weddings / Christenings</li>
-                    <li>• Portraits</li>
-                    <li>• Corporate Events</li>
-                    <li>• Product photography</li>
+                    <li>• {t('home.services.weddingsChristenings')}</li>
+                    <li>• {t('home.services.portraits')}</li>
+                    <li>• {t('home.services.corporate')}</li>
+                    <li>• {t('home.services.commercial')}</li>
                   </ul>
                 </div>
-                <span className="text-gray-300">and more...</span>
+                <span className="text-gray-300">{t('home.services.more')}...</span>
                 <Link
                   to="/services"
                   className="inline-block border border-white px-8 py-3 mt-12 hover:bg-white hover:text-[#2e2e2e] transition-colors w-fit"
                 >
-                  View Services
+                  {t('home.services.cta')}
                 </Link>
               </div>
             </div>
@@ -140,11 +140,9 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-3xl font-light">About Me</h2>
+              <h2 className="text-3xl font-light">{t('home.about.title')}</h2>
               <p className="text-gray-600 leading-relaxed">
-                With over a decade of experience in professional photography, I specialize in capturing
-                the essence of moments that tell your unique story. My approach combines technical
-                expertise with artistic vision to create compelling visual narratives.
+                {t('home.about.description')}
               </p>
             </div>
             <div className="aspect-square">

@@ -3,18 +3,6 @@ import {services} from "./servicesData.ts";
 import {Link} from "react-router-dom";
 import ConsentNotice from "../../components/consentNotice/ConsentNotice";
 
-const ServiceCard = ({ title, description, image }: { title: string; description: string; image: string }) => (
-  <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1">
-    <div className="aspect-video overflow-hidden">
-      <img src={image} alt={title} className="w-full h-full object-cover" />
-    </div>
-    <div className="p-6">
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  </div>
-);
-
 const ServicesPage = () => {
   return (
     <div className="py-12">

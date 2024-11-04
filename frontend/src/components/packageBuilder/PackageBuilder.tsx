@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Package, AlertCircle, X } from 'lucide-react';
 import { Service, DiscountTier, OptionQuantity } from '../../types/types.ts';
 import OptionGroup from './option/OptionGroup';
@@ -133,7 +133,7 @@ const PackageBuilder: React.FC<PackageBuilderProps> = ({ service, onPackageSelec
       }
     }
 
-    let matchingPackage = null;
+    let matchingPackage: string | null = null;
     for (const pkg of service.packages) {
       if (pkg.preselectedOptions &&
         pkg.preselectedOptions.length === newSelected.size &&

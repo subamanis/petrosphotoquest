@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
 import { services } from '../servicesData.ts';
@@ -9,7 +9,7 @@ const ServicePage = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+  const [, setSelectedPackage] = useState<string | null>(null);
 
   const service = services.find(s => s.id === serviceId);
 
