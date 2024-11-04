@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
+import LanguageSwitcher from '../languageSwitcher/LanguageSwitcher';
 import "./Header.scss";
 import "../../styles/global.scss"
 
 const Header = () => {
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -20,33 +23,37 @@ const Header = () => {
           <span className="mr-auto ml-auto text-sm tracking-[0.3em] mt-1 text-gray-300">PHOTOGRAPHY</span>
         </Link>
 
-        {/* Navigation Section */}
+        {/* Navigation and Language Section */}
         <div className="flex justify-end items-center space-x-10">
           <nav className="flex space-x-10 items-center">
             <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
-              Home
+              {t('nav.home')}
             </Link>
             <Link to="/services" className={`nav-link ${isActive('/services') ? 'active' : ''}`}>
-              Services
+              {t('nav.services')}
             </Link>
             <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>
-              Projects
+              {t('nav.projects')}
             </Link>
             <Link to="/shop" className={`nav-link ${isActive('/shop') ? 'active' : ''}`}>
-              Shop
+              {t('nav.shop')}
             </Link>
             <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
-              Contact
+              {t('nav.contact')}
             </Link>
           </nav>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-300 transition-colors"
-          >
-            <Instagram className="w-6 h-6" />
-          </a>
+
+          <div className="flex items-center space-x-6">
+            <LanguageSwitcher />
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-300 transition-colors"
+            >
+              <Instagram className="w-6 h-6" />
+            </a>
+          </div>
         </div>
       </div>
     </header>
