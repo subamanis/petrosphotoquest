@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Info } from 'lucide-react';
 import { products } from '../shopData';
 import { PrintSize } from '../../../types/types.ts';
-import ProductInquiryForm from '../../../components/productInquiryForm/ProductInquiryForm';
+import ProductInquiryForm from '../../../components/productInquiryForm/ProductInquiryForm.tsx';
 
 const ProductPage = () => {
   const { productId } = useParams();
