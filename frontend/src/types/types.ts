@@ -67,3 +67,34 @@ export interface PhotoProject {
     caption?: string;
   }[];
 }
+
+// ==================================================
+
+export interface Product {
+  id: string;
+  title: string;
+  description: string;
+  type: ProductType;
+  images: string[];
+  details: string[];
+  inStock: boolean;
+  featured?: boolean;
+  // For prints
+  sizes?: PrintSize[];
+  // For fixed-price products (zines, wallpapers)
+  price?: number;
+}
+
+export interface PrintSize {
+  name: string;
+  dimensions: string;
+  price: number;
+}
+
+export type ProductType = 'zine' | 'print' | 'wallpaperBundle';
+
+export const PRODUCT_TYPE_LABELS: Record<ProductType, string> = {
+  zine: 'Zines',
+  print: 'Prints',
+  wallpaperBundle: 'Digital Wallpaper Bundle'
+};
