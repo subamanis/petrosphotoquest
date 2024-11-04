@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { Product, PrintSize } from '../../types/types.ts';
+import { useRecaptcha } from '../../hooks/useRecaptcha';
 
 interface ProductInquiryFormProps {
   product: Product;
@@ -30,6 +31,7 @@ const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { executeRecaptcha, isActive } = useRecaptcha();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -42,10 +44,21 @@ const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const token = await executeRecaptcha('product_inquiry');
+      if (!token) {
+        throw new Error('reCAPTCHA verification failed');
+      }
+
+      // Simulate API call with reCAPTCHA token
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Form submission failed:', error);
+      // Handle error (show error message to user)
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getProductDetails = () => {
@@ -178,6 +191,21 @@ const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({
           >
             {isSubmitting ? 'Sending...' : 'Submit Inquiry'}
           </button>
+
+          {/* TODO: MAKE THIS WORK */}
+          {isActive && (
+            <p className="text-xs text-gray-500 text-center">
+              This site is protected by reCAPTCHA and the Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">
+                Terms of Service
+              </a>{' '}
+              apply.
+            </p>
+          )}
         </form>
       </div>
     </div>

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Send } from 'lucide-react';
+import { useRecaptcha } from '../../hooks/useRecaptcha';
 
 interface SubscriptionPreferences {
   newCollections: boolean;
@@ -16,13 +17,19 @@ const NewsletterSubscribe = () => {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const { executeRecaptcha, isActive } = useRecaptcha();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
 
-    // Simulate API call
     try {
+      const token = await executeRecaptcha('newsletter_subscribe');
+      if (!token) {
+        throw new Error('reCAPTCHA verification failed');
+      }
+
+      // Simulate API call with reCAPTCHA token
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
       setEmail('');
@@ -110,6 +117,20 @@ const NewsletterSubscribe = () => {
               <span>Event invitations and updates</span>
             </label>
           </div>
+
+          {isActive && (
+            <p className="text-xs text-gray-500 text-center">
+              This site is protected by reCAPTCHA and the Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">
+                Terms of Service
+              </a>{' '}
+              apply.
+            </p>
+          )}
         </form>
 
         {status === 'error' && (
