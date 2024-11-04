@@ -5,7 +5,7 @@ export const products: Product[] = [
     id: 'tokyo-nights-zine',
     title: 'Tokyo Nights',
     description: 'A 64-page photographic journey through Tokyo\'s neon-lit streets.',
-    price: 35,
+    price: 30,
     type: 'zine',
     images: [
       'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80',
@@ -34,23 +34,33 @@ export const products: Product[] = [
       'Museum-grade archival paper',
       'Signed and numbered',
       'Certificate of authenticity included',
-      'Ships in protective tube'
+      'All prints include a 3-5cm white margin around the photo',
+      'Margin width can be adjusted upon request',
+      'Ships in protective packaging'
     ],
+    frameDetails: {
+      description: 'Professional gallery frame with glass protection',
+      width: '2cm',
+      color: 'Black'
+    },
     sizes: [
       {
         name: 'Small',
-        dimensions: '8" × 10"',
-        price: 80
+        dimensions: '20 × 25 cm',
+        basePrice: 70,
+        framedPrice: 120
       },
       {
         name: 'Medium',
-        dimensions: '12" × 16"',
-        price: 120
+        dimensions: '30 × 40 cm',
+        basePrice: 100,
+        framedPrice: 170
       },
       {
         name: 'Large',
-        dimensions: '20" × 24"',
-        price: 200
+        dimensions: '50 × 60 cm',
+        basePrice: 170,
+        framedPrice: 270
       }
     ],
     inStock: true
@@ -59,8 +69,8 @@ export const products: Product[] = [
     id: 'sakura-dreams-wallpaper',
     title: 'Sakura Dreams',
     description: 'High-resolution digital wallpaper pack featuring cherry blossoms.',
-    price: 15,
-    type: 'wallpaperBundle',
+    price: 12,
+    type: 'wallpaper',
     images: [
       'https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&q=80'
     ],

@@ -81,6 +81,7 @@ export interface Product {
   featured?: boolean;
   // For prints
   sizes?: PrintSize[];
+  frameDetails?: FrameDetails;
   // For fixed-price products (zines, wallpapers)
   price?: number;
 }
@@ -88,13 +89,20 @@ export interface Product {
 export interface PrintSize {
   name: string;
   dimensions: string;
-  price: number;
+  basePrice: number;
+  framedPrice: number;
 }
 
-export type ProductType = 'zine' | 'print' | 'wallpaperBundle';
+export interface FrameDetails {
+  description: string;
+  width: string;
+  color: string;
+}
+
+export type ProductType = 'zine' | 'print' | 'wallpaper';
 
 export const PRODUCT_TYPE_LABELS: Record<ProductType, string> = {
   zine: 'Zines',
   print: 'Prints',
-  wallpaperBundle: 'Digital Wallpaper Bundle'
+  wallpaper: 'Digital Wallpapers'
 };
