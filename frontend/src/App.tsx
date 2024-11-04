@@ -5,7 +5,7 @@ import HomePage from './pages/homePage/HomePage';
 import ServicesPage from './pages/servicesPage/ServicesPage';
 import ProjectsPage from './pages/projectsPage/ProjectsPage';
 import ProjectPage from './pages/projectsPage/projectPage/ProjectPage';
-import ServiceDetails from "./pages/servicesPage/servicePage/ServiceDetails";
+import ServicePage from "./pages/servicesPage/servicePage/ServicePage.tsx";
 import ContactPage from "./pages/contactPage/ContactPage";
 import NewsletterPage from "./pages/newsletterPage/NewsletterPage";
 import ShopPage from "./pages/shopPage/ShopPage";
@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:serviceId" element={<ServiceDetails />} />
+            <Route path="/services/:serviceId" element={<ServicePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:projectId" element={<ProjectPage />} />
             <Route path="/shop" element={<ShopPage />} />

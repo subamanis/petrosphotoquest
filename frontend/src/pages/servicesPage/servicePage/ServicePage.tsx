@@ -5,7 +5,7 @@ import { services } from '../servicesData.ts';
 import ConsentNotice from "../../../components/consentNotice/ConsentNotice.tsx";
 import PackageBuilder from "../../../components/packageBuilder/PackageBuilder.tsx";
 
-const ServiceDetails = () => {
+const ServicePage = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
@@ -117,4 +117,4 @@ const ServiceDetails = () => {
   );
 };
 
-export default ServiceDetails;
+export default ServicePage;

@@ -376,11 +376,11 @@ export const services: Service[] = [
     ],
     highlights: [
       'Professional guidance throughout the session',
-      'Multiple outfit changes',
+      'Possible multiple outfit changes',
       'Location scouting and recommendations',
       'High-resolution digital images',
-      'Basic retouching included',
-      'Online gallery for easy sharing'
+      'Social-media optimized files',
+      'Retouching',
     ],
     packages: [
       {
