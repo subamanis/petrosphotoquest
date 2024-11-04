@@ -312,5 +312,126 @@ export const services: Service[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'portrait-photography',
+    title: 'Portrait Photography',
+    description: 'Professional portrait sessions capturing your authentic self in natural or urban settings.',
+    longDescription: `As a portrait photographer, I specialize in creating authentic, expressive images 
+    that capture your unique personality and style. Whether you need professional headshots, personal 
+    portraits, or family photos, I work with natural light and carefully chosen locations to create 
+    images that truly represent you.
+
+    Each session is tailored to your specific needs, with time for outfit changes and different 
+    locations if desired. I provide gentle direction while keeping the atmosphere relaxed and 
+    comfortable, ensuring natural expressions and genuine moments.`,
+    coverImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80',
+    gallery: [
+      { url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80', caption: 'Natural Light Portrait' },
+      { url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80', caption: 'Professional Headshot' },
+      { url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80', caption: 'Urban Portrait' },
+      { url: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80', caption: 'Fashion Portrait' }
+    ],
+    extraGallery: [
+      { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80', caption: 'Black & White Portrait' },
+      { url: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80', caption: 'Environmental Portrait' },
+      { url: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80', caption: 'Casual Portrait' },
+      { url: 'https://images.unsplash.com/photo-1464863979621-258859e62245?auto=format&fit=crop&q=80', caption: 'Lifestyle Portrait' }
+    ],
+    basePrice: 150,
+    options: [
+      {
+        id: 'session',
+        name: 'Session Duration',
+        description: 'Choose your preferred session length',
+        type: 'single',
+        options: [
+          { id: 'session-mini', label: 'Mini Session (1 hour, 20-30 photos)', price: 0 },
+          { id: 'session-standard', label: 'Standard Session (2 hours, 35-45 photos)', price: 30 },
+          { id: 'session-extended', label: 'Extended Session (3 hours 50-60 photos)', price: 50 }
+        ]
+      },
+      {
+        id: 'location',
+        name: 'Location Type',
+        description: 'Choose your preferred shooting location',
+        type: 'single',
+        options: [
+          { id: 'location-one', label: 'One Location', price: 0 },
+          { id: 'location-two', label: 'Two Locations', price: 30 },
+          { id: 'location-three', label: 'Three Locations', price: 60 },
+        ]
+      },
+      {
+        id: 'extras',
+        name: 'Additional Services',
+        description: 'Enhance your portrait session',
+        type: 'multiple',
+        options: [
+          { id: 'extra-printing', label: 'Photo printing ', price: 35 },
+          { id: 'extra-express', label: '48-Hour Express Digital Delivery', price: 30 },
+          { id: 'extra-makeup', label: 'Professional Makeup', price: 40 },
+        ]
+      }
+    ],
+    highlights: [
+      'Professional guidance throughout the session',
+      'Multiple outfit changes',
+      'Location scouting and recommendations',
+      'High-resolution digital images',
+      'Basic retouching included',
+      'Online gallery for easy sharing'
+    ],
+    packages: [
+      {
+        name: 'Essential',
+        price: '€200',
+        description: 'Perfect for professional headshots or quick personal portraits',
+        features: [
+          'Mini Session (30 minutes)',
+          'Urban or Nature Location',
+          '10 Digital Photos',
+          'Online Gallery'
+        ],
+        preselectedOptions: ['session-mini', 'location-one']
+      },
+      {
+        name: 'Classic',
+        price: '€400',
+        description: 'Our most popular portrait package',
+        isPopular: true,
+        features: [
+          'Standard Session (1 hour)',
+          'Location of Choice',
+          '20 Digital Photos',
+          'Professional Makeup',
+          'Multiple Outfit Changes'
+        ],
+        preselectedOptions: [
+          'session-standard',
+          'location-two',
+          'extra-makeup'
+        ]
+      },
+      {
+        name: 'Premium',
+        price: '€700',
+        description: 'Complete portrait experience with all extras',
+        features: [
+          'Extended Session (2 hours)',
+          'Multiple Locations',
+          '30 Digital Photos',
+          'Professional Makeup',
+          'Styling Consultation',
+          'Express Delivery',
+        ],
+        preselectedOptions: [
+          'session-extended',
+          'location-three',
+          'extra-makeup',
+          'extra-express',
+        ]
+      }
+    ]
   }
 ];
