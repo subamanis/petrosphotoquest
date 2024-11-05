@@ -1,0 +1,5 @@
+.invalid {
+  & > div:first-child > div:first-child > div:first-child > div:first-child {
+    border: 2px solid red;
+  }
+}

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Send } from 'lucide-react';
+import Captcha from '../../components/captcha/Captcha';
 
 interface SubscriptionPreferences {
   newCollections: boolean;
@@ -16,9 +17,17 @@ const NewsletterSubscribe = () => {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [isCaptchaHighlighted, setIsCaptchaHighlighted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      setIsCaptchaHighlighted(true);
+      setErrorMessage('Please complete the captcha.');
+      return;
+    }
+
     setStatus('submitting');
 
     // Simulate API call
@@ -26,6 +35,8 @@ const NewsletterSubscribe = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
       setEmail('');
+      setCaptchaToken(null);
+      setIsCaptchaHighlighted(false);
     } catch (error) {
       setStatus('error');
       setErrorMessage('Something went wrong. Please try again.');
@@ -37,6 +48,13 @@ const NewsletterSubscribe = () => {
       ...prev,
       [key]: !prev[key]
     }));
+  };
+
+  const handleCaptchaVerification = (token: string | null) => {
+    setCaptchaToken(token);
+    if (token) {
+      setIsCaptchaHighlighted(false); // Remove the highlight if CAPTCHA is solved
+    }
   };
 
   if (status === 'success') {
@@ -79,6 +97,8 @@ const NewsletterSubscribe = () => {
               {status === 'submitting' ? 'Subscribing...' : 'Subscribe'}
             </button>
           </div>
+
+          <Captcha onVerify={handleCaptchaVerification} showError={isCaptchaHighlighted} />
 
           <div className="space-y-3 text-left">
             <p className="text-sm text-gray-600 mb-2">I would like to receive emails about:</p>
