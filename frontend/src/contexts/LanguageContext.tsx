@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
-type Language = 'en' | 'el';
+import { Language } from '../types/types';
+import { getInitialLanguage } from '../utils/languageDetection';
 
 interface LanguageContextType {
   language: Language;
@@ -10,27 +10,33 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    // Check URL params first
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang') as Language;
-    if (langParam && ['en', 'el'].includes(langParam)) {
-      return langParam;
-    }
-
-    // Then check browser language
-    const browserLang = navigator.language.split('-')[0];
-    return browserLang === 'el' ? 'el' : 'en';
-  });
+  const [language, setLanguage] = useState<Language>('en'); // Default fallback
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const initLanguage = async () => {
+      const initialLang = await getInitialLanguage();
+      setLanguage(initialLang);
+      setIsLoading(false);
+    };
+
+    initLanguage();
+  }, []);
+
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    console.log('setting lang');
+    
+    localStorage.setItem('preferred-language', lang);
+    console.log('getting attr: ',localStorage.getItem('preferred-language'));
+
     // Update HTML lang attribute
-    document.documentElement.lang = language;
+    document.documentElement.lang = lang;
 
     // Update title based on language
     const titleElement = document.querySelector('title');
     if (titleElement) {
-      const newTitle = titleElement.getAttribute(`data-title-${language}`);
+      const newTitle = titleElement.getAttribute(`data-title-${lang}`);
       if (newTitle) {
         titleElement.textContent = newTitle;
       }
@@ -38,16 +44,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     // Update URL without page reload
     const url = new URL(window.location.href);
-    if (language === 'en') {
+    if (lang === 'en') {
       url.searchParams.delete('lang');
     } else {
-      url.searchParams.set('lang', language);
+      url.searchParams.set('lang', lang);
     }
     window.history.replaceState({}, '', url);
-  }, [language]);
+  };
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
