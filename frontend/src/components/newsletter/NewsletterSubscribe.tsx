@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Send } from 'lucide-react';
 import Captcha from '../../components/captcha/Captcha';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface SubscriptionPreferences {
   newCollections: boolean;
@@ -9,6 +10,7 @@ interface SubscriptionPreferences {
 }
 
 const NewsletterSubscribe = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [preferences, setPreferences] = useState<SubscriptionPreferences>({
     newCollections: true,
@@ -24,7 +26,7 @@ const NewsletterSubscribe = () => {
     e.preventDefault();
     if (!captchaToken) {
       setIsCaptchaHighlighted(true);
-      setErrorMessage('Please complete the captcha.');
+      setErrorMessage(t('newsletter.subscribe.captchaError'));
       return;
     }
 
@@ -39,7 +41,7 @@ const NewsletterSubscribe = () => {
       setIsCaptchaHighlighted(false);
     } catch (error) {
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again.');
+      setErrorMessage(t('newsletter.subscribe.error'));
     }
   };
 
@@ -53,7 +55,7 @@ const NewsletterSubscribe = () => {
   const handleCaptchaVerification = (token: string | null) => {
     setCaptchaToken(token);
     if (token) {
-      setIsCaptchaHighlighted(false); // Remove the highlight if CAPTCHA is solved
+      setIsCaptchaHighlighted(false);
     }
   };
 
@@ -62,9 +64,9 @@ const NewsletterSubscribe = () => {
       <section className="py-16">
         <div className="max-w-xl mx-auto px-4 text-center">
           <Send className="w-12 h-12 mx-auto mb-4 text-gray-900" />
-          <h3 className="text-2xl font-light mb-2">Thank you for subscribing!</h3>
+          <h3 className="text-2xl font-light mb-2">{t('newsletter.subscribe.success.title')}</h3>
           <p className="text-gray-600">
-            You'll receive updates about your selected preferences. As a subscriber, you now have access to exclusive discounts and early access to new content.
+            {t('newsletter.subscribe.success.description')}
           </p>
         </div>
       </section>
@@ -74,9 +76,9 @@ const NewsletterSubscribe = () => {
   return (
     <section className="py-8">
       <div className="max-w-xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-light mb-4">Stay Updated</h2>
+        <h2 className="text-3xl font-light mb-4">{t('newsletter.subscribe.title')}</h2>
         <p className="text-gray-600 mb-8">
-          Subscribe to receive updates and get access to exclusive subscriber discounts and early access to new content.
+          {t('newsletter.subscribe.description')}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-14">
@@ -85,7 +87,7 @@ const NewsletterSubscribe = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder={t('newsletter.subscribe.emailPlaceholder')}
               required
               className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
             />
@@ -94,14 +96,14 @@ const NewsletterSubscribe = () => {
               disabled={status === 'submitting'}
               className="px-6 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors disabled:bg-gray-400"
             >
-              {status === 'submitting' ? 'Subscribing...' : 'Subscribe'}
+              {status === 'submitting' ? t('newsletter.subscribe.submitting') : t('newsletter.subscribe.submit')}
             </button>
           </div>
 
           <Captcha onVerify={handleCaptchaVerification} showError={isCaptchaHighlighted} />
 
           <div className="space-y-3 text-left">
-            <p className="text-sm text-gray-600 mb-2">I would like to receive emails about:</p>
+            <p className="text-sm text-gray-600 mb-2">{t('newsletter.subscribe.preferences.title')}</p>
             <label className="flex items-center space-x-3">
               <input
                 type="checkbox"
@@ -109,7 +111,7 @@ const NewsletterSubscribe = () => {
                 onChange={() => handlePreferenceChange('newCollections')}
                 className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
               />
-              <span>First look at new photo collections</span>
+              <span>{t('newsletter.subscribe.preferences.collections')}</span>
             </label>
             <label className="flex items-center space-x-3">
               <input
@@ -118,7 +120,7 @@ const NewsletterSubscribe = () => {
                 onChange={() => handlePreferenceChange('discounts')}
                 className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
               />
-              <span>Discounts on products or services</span>
+              <span>{t('newsletter.subscribe.preferences.discounts')}</span>
             </label>
             <label className="flex items-center space-x-3">
               <input
@@ -127,7 +129,7 @@ const NewsletterSubscribe = () => {
                 onChange={() => handlePreferenceChange('events')}
                 className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
               />
-              <span>Event invitations and updates</span>
+              <span>{t('newsletter.subscribe.preferences.events')}</span>
             </label>
           </div>
         </form>

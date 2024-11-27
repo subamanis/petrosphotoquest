@@ -82,6 +82,46 @@ export const translations: Translations = {
     'shop.size.title': 'Select Size',
     'shop.size.info': 'Sizes shown include a 2-5cm white margin around the photo. Margin width can be adjusted upon request.',
     'shop.details.title': 'Details',
+
+     // Newsletter Page
+     'newsletter.page.title': 'Photography Newsletter',
+     'newsletter.page.description': 'Join our community of photography enthusiasts and get exclusive benefits available only to subscribers.',
+     'newsletter.page.benefits.title': 'Subscriber Benefits',
+     'newsletter.page.benefits.early': 'Early access to new products and collections',
+     'newsletter.page.benefits.discounts': 'Exclusive subscriber-only discounts',
+     'newsletter.page.benefits.priority': 'Priority booking for events and workshops',
+     'newsletter.page.privacy': 'By subscribing, you agree to receive email communications. You can unsubscribe at any time. Your information will never be shared.',
+ 
+     // Newsletter Subscribe Component
+     'newsletter.subscribe.title': 'Stay Updated',
+     'newsletter.subscribe.description': 'Subscribe to receive updates and get access to exclusive subscriber discounts and early access to new content. Don\'t worry, there won\'t be any spamming.',
+     'newsletter.subscribe.emailPlaceholder': 'Enter your email',
+     'newsletter.subscribe.submit': 'Subscribe',
+     'newsletter.subscribe.submitting': 'Subscribing...',
+     'newsletter.subscribe.captchaError': 'Please complete the captcha.',
+     'newsletter.subscribe.error': 'Something went wrong. Please try again.',
+     'newsletter.subscribe.success.title': 'Thank you for subscribing!',
+     'newsletter.subscribe.success.description': 'You\'ll receive updates about your selected preferences. As a subscriber, you now have access to exclusive discounts and early access to new content.',
+     'newsletter.subscribe.preferences.title': 'I would like to receive emails about:',
+     'newsletter.subscribe.preferences.collections': 'First look at new photo collections',
+     'newsletter.subscribe.preferences.discounts': 'Discounts on products or services',
+     'newsletter.subscribe.preferences.events': 'Event invitations and updates',
+ 
+     // Newsletter Unsubscribe Component
+     'newsletter.unsubscribe.title': 'Unsubscribe from Newsletter',
+     'newsletter.unsubscribe.description': 'We\'re sorry to see you go. By unsubscribing, you\'ll no longer receive:',
+     'newsletter.unsubscribe.benefits.collections': 'Early access to new collections and products',
+     'newsletter.unsubscribe.benefits.discounts': 'Exclusive subscriber-only discounts',
+     'newsletter.unsubscribe.benefits.priority': 'Priority booking for events and workshops',
+     'newsletter.unsubscribe.form.emailLabel': 'Confirm your email address to unsubscribe',
+     'newsletter.unsubscribe.form.emailPlaceholder': 'Enter your email',
+     'newsletter.unsubscribe.form.submit': 'Unsubscribe',
+     'newsletter.unsubscribe.form.processing': 'Processing...',
+     'newsletter.unsubscribe.error': 'Something went wrong. Please try again.',
+     'newsletter.unsubscribe.success.title': 'You\'ve been unsubscribed',
+     'newsletter.unsubscribe.success.description': 'We\'re sorry to see you go. You can always',
+     'newsletter.unsubscribe.success.resubscribe': 'subscribe',
+     'newsletter.unsubscribe.success.change': 'again if you change your mind.'
   },
   el: {
     // Navigation
@@ -130,7 +170,7 @@ export const translations: Translations = {
 
     // Contact Page
     'contact.title': 'Επικοινωνήστε',
-    'contact.description': 'Είμαι πάντα ενθουσιασμένος να συνδεθώ με λάτρεις της φωτογραφίας, πιθανούς πελάτες και οποιονδήποτε ενδιαφέρεται για τη δουλειά μου. Είτε έχετε ερωτήσεις για τις υπηρεσίες μου, θέλετε να συζητήσετε μια πιθανή συνεργασία ή ενδιαφέρεστε για εκτυπώσεις και άλλα προϊόντα, θα χαρώ να επικοινωνήσω μαζί σας.',
+    'contact.description': 'Είμαι πάντα ενθουσιασμένος να συνδεθώ με λάτρεις της φωτογραφίας, πιθανούς πελάτες και οποιονδήποτε ενδιαφέρεται για τη δουλειά μου. Είτε έχετε ερωτήσεις για τις υπηρεσίες μου, θέλετε να συζητήσετε μια πιθανή συνεργασία ή ενδιαφέρεστε για εκτυπώσεις και άλλα προϊόντα, θα χαρώ να έρθουμε σε επαφή.',
     'contact.connect.title': 'Συνδεθείτε μαζί μου',
     'contact.response.title': 'Χρόνος Απάντησης',
     'contact.response.text': 'Συνήθως απαντώ σε όλα τα μηνύματα εντός 48 ωρών τις εργάσιμες ημέρες.',
@@ -138,7 +178,7 @@ export const translations: Translations = {
     'contact.form.name': 'Όνομα',
     'contact.form.email': 'Email',
     'contact.form.topic': 'Θέμα',
-    'contact.form.topic.placeholder': 'Εισάγετε το θέμα σας',
+    'contact.form.topic.placeholder': 'Τίτλος / Κατηγορία / Θέμα',
     'contact.form.message': 'Μήνυμα',
     'contact.form.submit': 'Αποστολή Μηνύματος',
     'contact.form.sending': 'Αποστολή...',
@@ -160,5 +200,45 @@ export const translations: Translations = {
     'shop.size.title': 'Επιλέξτε Μέγεθος',
     'shop.size.info': 'Τα μεγέθη περιλαμβάνουν περιθώριο 2-5εκ γύρω από τη φωτογραφία. Το πλάτος του περιθωρίου μπορεί να προσαρμοστεί κατόπιν αιτήματος.',
     'shop.details.title': 'Λεπτομέρειες',
+
+    // Newsletter Page
+    'newsletter.page.title': 'Newsletter Φωτογραφίας',
+    'newsletter.page.description': 'Γίνετε μέλος της κοινότητάς μας για τους λάτρεις της φωτογραφίας και αποκτήστε αποκλειστικά προνόμια μόνο για συνδρομητές.',
+    'newsletter.page.benefits.title': 'Προνόμια Συνδρομητών',
+    'newsletter.page.benefits.early': 'Πρόωρη πρόσβαση σε νέα προϊόντα και συλλογές',
+    'newsletter.page.benefits.discounts': 'Αποκλειστικές εκπτώσεις μόνο για συνδρομητές',
+    'newsletter.page.benefits.priority': 'Προτεραιότητα στην κράτηση για εκδηλώσεις και σεμινάρια',
+    'newsletter.page.privacy': 'Με την εγγραφή σας, συμφωνείτε να λαμβάνετε επικοινωνίες μέσω email. Μπορείτε να απεγγραφείτε ανά πάσα στιγμή. Οι πληροφορίες σας δεν θα κοινοποιηθούν ποτέ.',
+
+    // Newsletter Subscribe Component
+    'newsletter.subscribe.title': 'Μείνετε Ενημερωμένοι',
+    'newsletter.subscribe.description': 'Εγγραφείτε για να λαμβάνετε ενημερώσεις και αποκτήστε πρόσβαση σε αποκλειστικές εκπτώσεις και πρόωρη πρόσβαση σε νέο περιεχόμενο. Μην ανησυχείτε, δε θα υπάρξει σπαμάρισμα.',
+    'newsletter.subscribe.emailPlaceholder': 'Εισαγάγετε το email σας',
+    'newsletter.subscribe.submit': 'Εγγραφή',
+    'newsletter.subscribe.submitting': 'Γίνεται εγγραφή...',
+    'newsletter.subscribe.captchaError': 'Ολοκληρώστε την επαλήθευση captcha.',
+    'newsletter.subscribe.error': 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.',
+    'newsletter.subscribe.success.title': 'Ευχαριστούμε που εγγραφήκατε!',
+    'newsletter.subscribe.success.description': 'Θα λαμβάνετε ενημερώσεις με βάση τις προτιμήσεις σας. Ως συνδρομητής, έχετε τώρα πρόσβαση σε αποκλειστικές εκπτώσεις και πρόωρη πρόσβαση σε νέο περιεχόμενο.',
+    'newsletter.subscribe.preferences.title': 'Θα ήθελα να λαμβάνω email σχετικά με:',
+    'newsletter.subscribe.preferences.collections': 'Πρώτη ματιά σε νέες συλλογές φωτογραφιών',
+    'newsletter.subscribe.preferences.discounts': 'Εκπτώσεις σε προϊόντα ή υπηρεσίες',
+    'newsletter.subscribe.preferences.events': 'Προσκλήσεις και ενημερώσεις εκδηλώσεων',
+
+    // Newsletter Unsubscribe Component
+    'newsletter.unsubscribe.title': 'Απεγγραφή από το Newsletter',
+    'newsletter.unsubscribe.description': 'Λυπούμαστε που φεύγετε. Με την απεγγραφή, δεν θα λαμβάνετε πλέον:',
+    'newsletter.unsubscribe.benefits.collections': 'Πρόωρη πρόσβαση σε νέες συλλογές και προϊόντα',
+    'newsletter.unsubscribe.benefits.discounts': 'Αποκλειστικές εκπτώσεις μόνο για συνδρομητές',
+    'newsletter.unsubscribe.benefits.priority': 'Προτεραιότητα στην κράτηση για εκδηλώσεις και σεμινάρια',
+    'newsletter.unsubscribe.form.emailLabel': 'Επιβεβαιώστε το email σας για απεγγραφή',
+    'newsletter.unsubscribe.form.emailPlaceholder': 'Εισαγάγετε το email σας',
+    'newsletter.unsubscribe.form.submit': 'Απεγγραφή',
+    'newsletter.unsubscribe.form.processing': 'Γίνεται επεξεργασία...',
+    'newsletter.unsubscribe.error': 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.',
+    'newsletter.unsubscribe.success.title': 'Η απεγγραφή σας ολοκληρώθηκε',
+    'newsletter.unsubscribe.success.description': 'Λυπούμαστε που φεύγετε. Μπορείτε πάντα να',
+    'newsletter.unsubscribe.success.resubscribe': 'εγγραφείτε',
+    'newsletter.unsubscribe.success.change': 'ξανά, αν αλλάξετε γνώμη.',
   }
 };

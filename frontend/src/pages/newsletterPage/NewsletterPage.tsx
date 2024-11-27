@@ -3,11 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import { Camera, Star, AlertCircle } from 'lucide-react';
 import NewsletterSubscribe from '../../components/newsletter/NewsletterSubscribe';
 import NewsletterUnsubscribe from "../../components/newsletter/NewsletterUnsubscribe";
-
+import { useTranslation } from '../../hooks/useTranslation';
 
 const NewsletterPage = () => {
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode');
+  const { t } = useTranslation();
 
   if (mode === 'unsubscribe') {
     return <NewsletterUnsubscribe />;
@@ -18,9 +19,9 @@ const NewsletterPage = () => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <Camera className="w-12 h-12 mx-auto mb-6 text-gray-900" />
-          <h1 className="text-4xl font-light mb-6">Photography Newsletter</h1>
+          <h1 className="text-4xl font-light mb-6">{t('newsletter.page.title')}</h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Join our community of photography enthusiasts and get exclusive benefits available only to subscribers.
+            {t('newsletter.page.description')}
           </p>
         </div>
 
@@ -29,20 +30,20 @@ const NewsletterPage = () => {
             <div>
               <h2 className="text-2xl font-light mb-4 flex items-center">
                 <Star className="w-5 h-5 mr-2 text-yellow-500" />
-                Subscriber Benefits
+                {t('newsletter.page.benefits.title')}
               </h2>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-gray-900 rounded-full mr-3"></span>
-                  Early access to new products and collections
+                  {t('newsletter.page.benefits.early')}
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-gray-900 rounded-full mr-3"></span>
-                  Exclusive subscriber-only discounts
+                  {t('newsletter.page.benefits.discounts')}
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-gray-900 rounded-full mr-3"></span>
-                  Priority booking for events and workshops
+                  {t('newsletter.page.benefits.priority')}
                 </li>
               </ul>
             </div>
@@ -58,8 +59,7 @@ const NewsletterPage = () => {
           <NewsletterSubscribe />
 
           <p className="text-center text-sm text-gray-500 mt-8">
-            By subscribing, you agree to receive email communications.
-            You can unsubscribe at any time. Your information will never be shared.
+            {t('newsletter.page.privacy')}
           </p>
         </div>
       </div>
