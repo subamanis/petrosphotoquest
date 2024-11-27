@@ -2,30 +2,26 @@ import {services} from "./servicesData.ts";
 import {Link} from "react-router-dom";
 import ConsentNotice from "../../components/consentNotice/ConsentNotice";
 import {useEffect, useState} from "react";
-import {ServiceService} from "../../services/service.service.ts";
 import {Service} from "../../../../shared/types.ts";
+import { useServiceApi } from "../../services/service.service.ts";
 
 const ServicesPage = () => {
   const [services, setServices] = useState<Service[]>([]);
-  // for (const service of services) {
-    // const key = `service:${service.id}`; // Use a unique key per service, prefixed for clarity
-    // const value = JSON.stringify(service, null, 2); 
-    // console.log('key: ', key);
-    // console.log('json value: ', value);
-    // console.log('json services: ', createJsonObject(services, "services", "id"));
-    // console.log('default', JSON.stringify(services, null, 2));
-    
-    
-    
-    
-  // }
-
-  // const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const serviceApi = useServiceApi();
 
   useEffect(() => {
-    ServiceService.getAll().then((response) => {
+    console.log('HELLOOOOOO WOOOOOOORL');
+    
+  }, []);
+
+  useEffect(() => {
+    console.log('use effect');
+    
+    serviceApi.getAll().then((response) => {
+    console.log('isnide then');
+
       if (response.ok) {
         console.log('response: ', response);
         
@@ -42,43 +38,6 @@ const ServicesPage = () => {
     });
   }, []);
 
-  // function createJsonObject<T>(array: T[], objectKey: string, fieldAsKey: keyof T): Record<string, any> {
-  //   const result: Record<string, any> = {
-  //     [objectKey]: array.reduce((acc, entry) => {
-  //       const key = entry[fieldAsKey] as unknown as string;
-  //       acc[key] = entry;
-  //       return acc;
-  //     }, {} as Record<string, T>),
-  //   };
-  
-  //   return result;
-  // }
-
-  function createJsonObject<T>(array: T[], objectKey: string, fieldAsKey: keyof T): Record<string, any> {
-    const result: Record<string, any> = {
-      [objectKey]: array.map(entry => ({
-        [entry[fieldAsKey] as unknown as string]: entry,
-      })),
-    };
-  
-    return result;
-  }
-
-  // useEffect(() => {
-  //   const fetchServices = () => {
-  //     try {
-  //       const services= ServiceService.getAll();
-  //       setServices(services);
-  //     } catch (err) {
-  //       // setError('Failed to load project configurations');
-  //       console.error(err);
-  //     } finally {
-  //       // setLoading(false);
-  //     }
-  //   };
-
-  //   fetchServices();
-  // }, []);
 
   return (
     <div className="py-12">

@@ -1,12 +1,13 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { projects } from '../projects.ts';
+import { projects } from '../projects';
 import { ArrowLeft } from 'lucide-react';
 import ThreeColumnGrid from '../../../components/projectLayouts/ThreeColumnGrid';
 import TwoColumnGrid from '../../../components/projectLayouts/TwoColumnGrid';
 import VerticalScroll from '../../../components/projectLayouts/VerticalScroll';
 import HorizontalScrollSingle from '../../../components/projectLayouts/HorizontalScrollSingle';
 import HorizontalScrollPairs from '../../../components/projectLayouts/HorizontalScrollPairs';
+import RelatedProducts from '../../../components/relatedProducts/RelatedProducts';
 
 const layoutMap: { [key: string]: React.ComponentType<{ project: any }> } = {
   'urban-nights': ThreeColumnGrid,
@@ -62,6 +63,13 @@ const ProjectPage = () => {
             <p className="text-lg">{project.description}</p>
           </div>
         </div>
+
+        {/* Related Products Section */}
+        {project.relatedProducts && (
+          <div className="mt-8">
+            <RelatedProducts products={project.relatedProducts} />
+          </div>
+        )}
       </div>
 
       {/* Photo Grid with Dynamic Layout */}

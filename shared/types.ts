@@ -62,10 +62,20 @@ export interface PhotoProject {
   date: string;
   description: string;
   featuredImages: string[];
-  allImages: {
-    url: string;
-    caption?: string;
-  }[];
+  allImages: ProjectImage[];
+  relatedProducts?: RelatedProduct[];
+}
+
+export interface ProjectImage {
+  url: string;
+  caption?: string;
+  availableAsPrint?: boolean;
+  printProductId?: string;
+}
+
+export interface RelatedProduct {
+  type: 'zine' | 'wallpaperCollection';
+  productId: string;
 }
 
 // ==================================================
@@ -82,8 +92,10 @@ export interface Product {
   // For prints
   sizes?: PrintSize[];
   frameDetails?: FrameDetails;
-  // For fixed-price products (zines, wallpapers)
+  // For fixed-price products (zines, wallpaper-collections)
   price?: number;
+  // For products related to projects
+  relatedProjectId?: string;
 }
 
 export interface PrintSize {
@@ -99,10 +111,10 @@ export interface FrameDetails {
   color: string;
 }
 
-export type ProductType = 'zine' | 'print' | 'wallpaper';
+export type ProductType = 'zine' | 'print' | 'wallpaperCollection';
 
 export const PRODUCT_TYPE_LABELS: Record<ProductType, string> = {
   zine: 'Zines',
   print: 'Prints',
-  wallpaper: 'Digital Wallpapers'
+  wallpaperCollection: 'Digital Wallpapers'
 };

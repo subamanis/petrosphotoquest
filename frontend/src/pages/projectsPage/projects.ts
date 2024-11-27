@@ -1,4 +1,4 @@
-import { PhotoProject } from '../../../../shared/types.ts';
+import { PhotoProject } from '../../../../shared/types';
 
 export const projects: PhotoProject[] = [
   {
@@ -14,10 +14,30 @@ export const projects: PhotoProject[] = [
       '/images/test/img4.jpg'
     ],
     allImages: [
-      { url: '/images/test/img1.jpg', caption: 'Shibuya Crossing at Blue Hour' },
-      { url: '/images/test/img2.jpg', caption: 'Neon Signs in Shinjuku' },
+      { 
+        url: '/images/test/img1.jpg', 
+        caption: 'Shibuya Crossing at Blue Hour',
+        availableAsPrint: true,
+        printProductId: 'tokyo-nights-print-1'
+      },
+      { 
+        url: '/images/test/img2.jpg', 
+        caption: 'Neon Signs in Shinjuku',
+        availableAsPrint: true,
+        printProductId: 'tokyo-nights-print-2'
+      },
       { url: '/images/test/img3.jpg', caption: 'Street Food Vendors' },
       { url: '/images/test/img4.jpg', caption: 'City Lights Reflection' }
+    ],
+    relatedProducts: [
+      {
+        type: 'zine',
+        productId: 'tokyo-nights-zine',
+      },
+      {
+        type: 'wallpaperCollection',
+        productId: 'tokyo-nights-wallpapers',
+      }
     ]
   },
   {
@@ -33,7 +53,12 @@ export const projects: PhotoProject[] = [
       '/images/test/img8.jpg'
     ],
     allImages: [
-      { url: '/images/test/img5.jpg', caption: 'Dawn at Matterhorn' },
+      { 
+        url: '/images/test/img5.jpg', 
+        caption: 'Dawn at Matterhorn',
+        availableAsPrint: true,
+        printProductId: 'alps-print-1'
+      },
       { url: '/images/test/img6.jpg', caption: 'Alpine Lake Reflection' },
       { url: '/images/test/img7.jpg', caption: 'Mountain Peaks' },
       { url: '/images/test/img8.jpg', caption: 'Foggy Valley' }
