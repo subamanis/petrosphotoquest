@@ -8,6 +8,7 @@ import VerticalScroll from '../../../components/projectLayouts/VerticalScroll';
 import HorizontalScrollSingle from '../../../components/projectLayouts/HorizontalScrollSingle';
 import HorizontalScrollPairs from '../../../components/projectLayouts/HorizontalScrollPairs';
 import RelatedProducts from '../../../components/relatedProducts/RelatedProducts';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 const layoutMap: { [key: string]: React.ComponentType<{ project: any }> } = {
   'urban-nights': ThreeColumnGrid,
@@ -21,18 +22,19 @@ const layoutMap: { [key: string]: React.ComponentType<{ project: any }> } = {
 const ProjectPage = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const project = projects.find(c => c.id === projectId);
 
   if (!project) {
     return (
       <div className="min-h-[50vh] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-light mb-4">Project not found</h2>
+          <h2 className="text-2xl font-light mb-4">{t('projects.notFound')}</h2>
           <button
             onClick={() => navigate('/projects')}
             className="text-gray-600 hover:text-gray-900"
           >
-            Return to projects
+            {t('projects.return')}
           </button>
         </div>
       </div>
@@ -50,7 +52,7 @@ const ProjectPage = () => {
           className="flex items-center text-gray-600 hover:text-gray-900 mb-8"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Projects
+          {t('projects.back')}
         </button>
 
         <div className="max-w-3xl">

@@ -1,16 +1,18 @@
 import React from 'react';
 import ProjectPreviewDetailed from '../../components/projectPreviewDetailed/ProjectPreviewDetailed.tsx';
 import { projects } from './projects.ts';
+import { useTranslation } from '../../hooks/useTranslation.ts';
 
 const ProjectsPage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="py-12">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-light mb-4">Personal Projects</h1>
+        <h1 className="text-4xl font-light mb-4">{t('projects.title')}</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          A curated selection of personal photography projects, each telling its own unique story
-          through the lens of artistic exploration and creative vision.
+          {t('projects.description')}
         </p>
       </div>
 

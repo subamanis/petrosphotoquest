@@ -38,6 +38,18 @@ export const translations: Translations = {
     'services.consent.title': 'Image Usage Notice',
     'services.consent.description': 'Please note that I maintain the right to showcase photographs from our sessions on my website and social media platforms. If you wish to keep specific photos private, please inform me during our session or when reviewing the final images.',
 
+    // Projects Page
+    'projects.title': 'Personal Projects',
+    'projects.description': 'A curated selection of personal photography projects, each telling its own unique story through the lens of artistic exploration and creative vision.',
+    'projects.back': 'Back to Projects',
+    'projects.notFound': 'Project not found',
+    'projects.return': 'Return to projects',
+    'projects.related.title': 'Related Products',
+    'projects.related.zine': 'Available as Zine',
+    'projects.related.wallpaper': 'Digital Wallpaper Collection',
+    'projects.related.zineDescription': 'A physical photo zine that contains images from this collection is available. Check it out now!',
+    'projects.related.wallpaperDescription': 'A digital wallpaper collection that contains images from this collection is available. Check it out now!',
+
     // Contact Page
     'contact.title': 'Get in Touch',
     'contact.description': 'I\'m always excited to connect with fellow photography enthusiasts, potential clients, and anyone interested in my work. Whether you have questions about my services, want to discuss a potential collaboration, or are interested in purchasing prints, zines or any other products, I\'d love to hear from you.',
@@ -103,6 +115,18 @@ export const translations: Translations = {
     'services.custom.cta': 'Επικοινωνήστε μαζί μου',
     'services.consent.title': 'Ειδοποίηση Χρήσης Εικόνων',
     'services.consent.description': 'Παρακαλώ σημειώστε ότι διατηρώ το δικαίωμα να παρουσιάζω φωτογραφίες από τις συνεδρίες μας στην ιστοσελίδα μου και στα μέσα κοινωνικής δικτύωσης. Εάν επιθυμείτε να κρατήσετε συγκεκριμένες φωτογραφίες ιδιωτικές, παρακαλώ ενημερώστε με κατά τη διάρκεια της συνεδρίας ή κατά την επισκόπηση των τελικών εικόνων.',
+
+    // Projects Page
+    'projects.title': 'Προσωπικά Projects',
+    'projects.description': 'Συλλογές από προσωπικά φωτογραφικά projects, το καθένα αφηγείται τη δική του μοναδική ιστορία μέσα από το φακό της καλλιτεχνικής εξερεύνησης και του δημιουργικού οράματος.',
+    'projects.back': 'Πίσω στα Projects',
+    'projects.notFound': 'Το project δεν βρέθηκε',
+    'projects.return': 'Επιστροφή στα projects',
+    'projects.related.title': 'Σχετικά Προϊόντα',
+    'projects.related.zine': 'Διαθέσιμο ως Περιοδικό (zine)',
+    'projects.related.wallpaper': 'Συλλογή Ψηφιακών Wallpapers',
+    'projects.related.zineDescription': 'Ένα φωτογραφικό περιοδικό περιέχει φωτογραφίες από αυτό το project. Τσέκαρέ το εδώ!',
+    'projects.related.wallpaperDescription': 'Μια συλλογή ψηφιακών wallpapers περιέχει φωτογραφίες από αυτό το project. Τσέκαρέ το εδώ!',
 
     // Contact Page
     'contact.title': 'Επικοινωνήστε',
