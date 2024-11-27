@@ -4,12 +4,15 @@ import ConsentNotice from "../../components/consentNotice/ConsentNotice";
 import {useEffect, useState} from "react";
 import {Service} from "../../../../shared/types.ts";
 import { useServiceApi } from "../../services/service.service.ts";
+import { useTranslation } from "../../hooks/useTranslation.ts";
 
 const ServicesPage = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const serviceApi = useServiceApi();
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     serviceApi.getAll().then((response) => {
@@ -30,10 +33,9 @@ const ServicesPage = () => {
     <div className="py-12">
       {/* Services Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-light mb-4">Services</h1>
+        <h1 className="text-4xl font-light mb-4">{t('services.title')}</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Professional photography services tailored to your needs. Each service is customizable
-          to ensure we capture your vision perfectly.
+          {t('services.description')}
         </p>
       </div>
 
@@ -69,15 +71,15 @@ const ServicesPage = () => {
       {/* Booking Section */}
       <div className="mt-20 bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-light mb-6">Custom Request?</h2>
+          <h2 className="text-3xl font-light mb-6">{t('services.custom.title')}</h2>
           <p className="text-gray-600 mb-8">
-            Let's discuss your photography needs and create a custom package that's perfect for you.
+            {t('services.custom.description')}
           </p>
           <Link 
             to="/contact"
             className="inline-block bg-gray-900 text-white px-8 py-3 rounded hover:bg-gray-800 transition-colors"
           >
-            Contact Me
+            {t('services.custom.cta')}
           </Link>
         </div>
       </div>

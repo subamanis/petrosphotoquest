@@ -4,8 +4,10 @@ import { Filter } from 'lucide-react';
 import { products } from './shopData';
 import { Product, ProductType, PRODUCT_TYPE_LABELS } from '../../../../shared/types.ts';
 import ProductCard from '../../components/productCard/ProductCard';
+import { useTranslation } from '../../hooks/useTranslation';
 
 const ShopPage = () => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedTypes, setSelectedTypes] = useState<Set<ProductType>>(new Set());
@@ -52,9 +54,9 @@ const ShopPage = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-light mb-4">Shop</h1>
+          <h1 className="text-4xl font-light mb-4">{t('shop.title')}</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore my collection of photography zines, fine art prints, and digital wallpapers.
+            {t('shop.description')}
           </p>
         </div>
 
@@ -63,7 +65,7 @@ const ShopPage = () => {
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center text-gray-600">
               <Filter className="w-5 h-5 mr-2" />
-              <span>Filter by:</span>
+              <span>{t('shop.filter.title')}</span>
             </div>
             {Object.entries(PRODUCT_TYPE_LABELS).map(([type, label]) => (
               <button
@@ -91,7 +93,7 @@ const ShopPage = () => {
         {/* Empty State */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600">No products found with the selected filters.</p>
+            <p className="text-gray-600">{t('shop.empty')}</p>
           </div>
         )}
       </div>

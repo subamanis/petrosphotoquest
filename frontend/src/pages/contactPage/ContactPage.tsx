@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import {Instagram, Mail, Phone, Send} from 'lucide-react';
+import { Instagram, Mail, Phone, Send } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 const ContactPage = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,17 +38,14 @@ const ContactPage = () => {
           {/* Contact Information */}
           <div className="flex-[1.4]">
             <div className="mb-12">
-              <h1 className="text-4xl font-light mb-6">Get in Touch</h1>
+              <h1 className="text-4xl font-light mb-6">{t('contact.title')}</h1>
               <p className="text-gray-600 text-lg leading-relaxed">
-                I'm always excited to connect with fellow photography enthusiasts, potential clients,
-                and anyone interested in my work. Whether you have questions about my services,
-                want to discuss a potential collaboration, or are interested in purchasing prints,
-                zines or any other products, I'd love to hear from you.
+                {t('contact.description')}
               </p>
             </div>
 
             <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-light">Connect With Me</h2>
+              <h2 className="mb-6 text-2xl font-light">{t('contact.connect.title')}</h2>
               <div className="space-y-4">
                 <a
                   href="tel:+306975676677"
@@ -75,37 +74,37 @@ const ContactPage = () => {
             </div>
 
             <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-light">Response Time</h2>
+              <h2 className="mb-6 text-2xl font-light">{t('contact.response.title')}</h2>
               <p className="text-gray-600">
-                I typically respond to all inquiries within 48 hours during business days.
+                {t('contact.response.text')}
               </p>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="flex-1 bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-light mb-6">Send a Message</h2>
+            <h2 className="text-2xl font-light mb-6">{t('contact.form.title')}</h2>
             {submitted ? (
               <div className="text-center py-8">
                 <div className="mb-4">
                   <Send className="w-12 h-12 text-green-500 mx-auto" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                <h3 className="text-xl font-semibold mb-2">{t('contact.success.title')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Thank you for reaching out. I'll get back to you as soon as possible.
+                  {t('contact.success.text')}
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  Send another message
+                  {t('contact.success.another')}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Name
+                    {t('contact.form.name')}
                   </label>
                   <input
                     type="text"
@@ -113,13 +112,14 @@ const ContactPage = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email <span className="text-red-500">*</span>
+                    {t('contact.form.email')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -134,7 +134,7 @@ const ContactPage = () => {
 
                 <div>
                   <label htmlFor="topic" className="block text-sm font-medium text-gray-700 mb-1">
-                    Topic
+                    {t('contact.form.topic')}
                   </label>
                   <input
                     type="text"
@@ -142,14 +142,14 @@ const ContactPage = () => {
                     name="topic"
                     value={formData.topic}
                     onChange={handleChange}
-                    placeholder="Enter your topic"
+                    placeholder={t('contact.form.topic.placeholder')}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message <span className="text-red-500">*</span>
+                    {t('contact.form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -167,7 +167,7 @@ const ContactPage = () => {
                   disabled={isSubmitting}
                   className="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-800 transition-colors disabled:bg-gray-400"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
                 </button>
               </form>
             )}
