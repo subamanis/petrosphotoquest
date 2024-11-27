@@ -4,12 +4,14 @@ import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
 import { services } from '../servicesData.ts';
 import ConsentNotice from "../../../components/consentNotice/ConsentNotice.tsx";
 import PackageBuilder from "../../../components/packageBuilder/PackageBuilder.tsx";
+import { useTranslation } from '../../../hooks/useTranslation';
 
 const ServicePage = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
   const [, setSelectedPackage] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const service = services.find(s => s.id === serviceId);
 
@@ -17,12 +19,12 @@ const ServicePage = () => {
     return (
       <div className="min-h-[50vh] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-light mb-4">Service not found</h2>
+          <h2 className="text-2xl font-light mb-4">{t('service.notFound')}</h2>
           <button
             onClick={() => navigate('/services')}
             className="text-gray-600 hover:text-gray-900"
           >
-            Return to services
+            {t('service.return')}
           </button>
         </div>
       </div>
@@ -42,7 +44,7 @@ const ServicePage = () => {
           className="flex items-center text-gray-600 hover:text-gray-900 mb-8"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Services
+          {t('service.back')}
         </button>
 
         <div className="max-w-3xl">
@@ -55,7 +57,7 @@ const ServicePage = () => {
 
       {/* Gallery */}
       <div className="max-w-7xl mx-auto px-4 mb-20">
-        <h2 className="text-2xl font-light mb-8">Portfolio</h2>
+        <h2 className="text-2xl font-light mb-8">{t('service.portfolio')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {allImages.map((image, index) => (
             <div key={index} className="group relative">
@@ -78,7 +80,7 @@ const ServicePage = () => {
               onClick={() => setShowMore(true)}
               className="inline-flex items-center text-gray-600 hover:text-gray-900"
             >
-              Load More
+              {t('service.loadMore')}
               <ChevronDown className="w-4 h-4 ml-1" />
             </button>
           </div>
@@ -87,7 +89,7 @@ const ServicePage = () => {
 
       {/* Package Builder */}
       <div className="max-w-[62rem] mx-auto px-12 py-8 mb-12 border-gray-800 border-double border-4">
-        <h2 className="text-2xl font-light mb-8 text-center">Build Your Package</h2>
+        <h2 className="text-2xl font-light mb-8 text-center">{t('service.packageBuilder')}</h2>
         <PackageBuilder
           service={service}
           onPackageSelect={setSelectedPackage}
@@ -97,7 +99,7 @@ const ServicePage = () => {
       {/* Highlights */}
       <div className="bg-gray-50 py-16 mb-20">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-light mb-8 text-center">What's Included</h2>
+          <h2 className="text-2xl font-light mb-8 text-center">{t('service.included')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {service.highlights.map((highlight, index) => (
               <div key={index} className="flex items-start">

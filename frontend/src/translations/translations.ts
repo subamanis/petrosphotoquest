@@ -38,6 +38,16 @@ export const translations: Translations = {
     'services.consent.title': 'Image Usage Notice',
     'services.consent.description': 'Please note that I maintain the right to showcase photographs from our sessions on my website and social media platforms. If you wish to keep specific photos private, please inform me during our session or when reviewing the final images.',
 
+     // Service Page
+    'service.notFound': 'Service not found',
+    'service.return': 'Return to services',
+    'service.back': 'Back to Services',
+    'service.portfolio': 'Portfolio',
+    'service.loadMore': 'Load More',
+    'service.packageBuilder': 'Build Your Package',
+    'service.included': "What's Included",
+    'service.consent': 'Please note that I maintain the right to showcase photographs from our sessions on my website and social media platforms. If you wish to keep specific photos private, please inform me during our session or when reviewing the final images.',
+
     // Projects Page
     'projects.title': 'Personal Projects',
     'projects.description': 'A curated selection of personal photography projects, each telling its own unique story through the lens of artistic exploration and creative vision.',
@@ -154,7 +164,17 @@ export const translations: Translations = {
     'services.custom.description': 'Ας συζητήσουμε τις φωτογραφικές σας ανάγκες και ας δημιουργήσουμε ένα πακέτο που είναι τέλειο για εσάς.',
     'services.custom.cta': 'Επικοινωνήστε μαζί μου',
     'services.consent.title': 'Ειδοποίηση Χρήσης Εικόνων',
-    'services.consent.description': 'Παρακαλώ σημειώστε ότι διατηρώ το δικαίωμα να παρουσιάζω φωτογραφίες από τις συνεδρίες μας στην ιστοσελίδα μου και στα μέσα κοινωνικής δικτύωσης. Εάν επιθυμείτε να κρατήσετε συγκεκριμένες φωτογραφίες ιδιωτικές, παρακαλώ ενημερώστε με κατά τη διάρκεια της συνεδρίας ή κατά την επισκόπηση των τελικών εικόνων.',
+    'services.consent.description': 'Παρακαλώ σημειώστε ότι διατηρώ το δικαίωμα να εκθέτω φωτογραφίες από τις συνεδρίες μας στην ιστοσελίδα μου και στα μέσα κοινωνικής δικτύωσης. Εάν επιθυμείτε να κρατήσετε συγκεκριμένες φωτογραφίες ιδιωτικές, παρακαλώ ενημερώστε με κατά τη διάρκεια της συνεδρίας ή κατά την παραλαβή των τελικών εικόνων.',
+
+    // Service Page
+    'service.notFound': 'Η υπηρεσία δεν βρέθηκε',
+    'service.return': 'Επιστροφή στις υπηρεσίες',
+    'service.back': 'Πίσω στις Υπηρεσίες',
+    'service.portfolio': 'Πορτφόλιο',
+    'service.loadMore': 'Περισσότερα',
+    'service.packageBuilder': 'Δημιουργήστε το Πακέτο σας',
+    'service.included': 'Τι Περιλαμβάνεται',
+    'service.consent': 'Παρακαλώ σημειώστε ότι διατηρώ το δικαίωμα να προβάλλω φωτογραφίες από τις συνεδρίες μας στην ιστοσελίδα μου και στα μέσα κοινωνικής δικτύωσης. Εάν επιθυμείτε να διατηρήσετε συγκεκριμένες φωτογραφίες ιδιωτικές, παρακαλώ ενημερώστε με κατά τη διάρκεια της συνεδρίας ή κατά την παραλαβή των τελικών εικόνων.',
 
     // Projects Page
     'projects.title': 'Προσωπικά Projects',
