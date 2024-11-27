@@ -73,9 +73,12 @@ const ServicesPage = () => {
           <p className="text-gray-600 mb-8">
             Let's discuss your photography needs and create a custom package that's perfect for you.
           </p>
-          <button className="bg-gray-900 text-white px-8 py-3 rounded hover:bg-gray-800 transition-colors">
-            Contact Us
-          </button>
+          <Link 
+            to="/contact"
+            className="inline-block bg-gray-900 text-white px-8 py-3 rounded hover:bg-gray-800 transition-colors"
+          >
+            Contact Me
+          </Link>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    topic: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,10 +19,10 @@ const ContactPage = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     setSubmitted(true);
     setIsSubmitting(false);
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', topic: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -112,14 +113,13 @@ const ContactPage = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -133,8 +133,23 @@ const ContactPage = () => {
                 </div>
 
                 <div>
+                  <label htmlFor="topic" className="block text-sm font-medium text-gray-700 mb-1">
+                    Topic
+                  </label>
+                  <input
+                    type="text"
+                    id="topic"
+                    name="topic"
+                    value={formData.topic}
+                    onChange={handleChange}
+                    placeholder="Enter your topic"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message
+                    Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     id="message"
