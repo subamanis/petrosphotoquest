@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Package, AlertCircle, X } from 'lucide-react';
-import { Service, DiscountTier, OptionQuantity } from '../../types/types.ts';
+import { Service, DiscountTier, OptionQuantity } from '../../../../shared/types.ts';
 import OptionGroup from './option/OptionGroup';
 import DiscountRibbon from './DiscountRibbon';
 import BookingDetails from '../../components/bookingDetails/BookingDetails';

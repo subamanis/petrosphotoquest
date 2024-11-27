@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import { Product, PrintSize } from '../../types/types.ts';
+import { Product, PrintSize } from '../../../../shared/types.ts';
 
 interface ProductInquiryFormProps {
   product: Product;

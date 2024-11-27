@@ -21,7 +21,7 @@ export interface Service {
 export interface ServicePackage {
   name: string;
   price: string;
-  description: string;
+  description?: string;
   features: string[];
   isPopular?: boolean;
   preselectedOptions?: string[];

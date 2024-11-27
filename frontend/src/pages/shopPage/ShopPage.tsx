@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter } from 'lucide-react';
 import { products } from './shopData';
-import { Product, ProductType, PRODUCT_TYPE_LABELS } from '../../types/types.ts';
+import { Product, ProductType, PRODUCT_TYPE_LABELS } from '../../../../shared/types.ts';
 import ProductCard from '../../components/productCard/ProductCard';
 
 const ShopPage = () => {

@@ -81,6 +81,10 @@ const HomePage = () => {
         </div>
       </section>
 
+      <div>
+        
+      </div>
+
       {/* Featured Work */}
       <section className="max-w-[90rem] mx-auto px-4 pt-16 pb-20">
         <h2 className="text-3xl font-light mb-8 text-center">{t('home.featured.title')}</h2>

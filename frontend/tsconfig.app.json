@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": false,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": ["src", "../shared/types.ts"]
 }

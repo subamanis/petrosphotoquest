@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServiceOptionGroup } from '../../../types/types.ts';
+import { ServiceOptionGroup } from '../../../../../shared/types.ts';
 import OptionItem from './OptionItem';
 
 interface OptionGroupProps {

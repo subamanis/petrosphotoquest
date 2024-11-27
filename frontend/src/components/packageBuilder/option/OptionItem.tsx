@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServiceOption } from '../../../types/types.ts';
+import { ServiceOption } from '../../../../../shared/types.ts';
 import OptionQuantityControl from './OptionQuantityControl';
 
 interface OptionItemProps {

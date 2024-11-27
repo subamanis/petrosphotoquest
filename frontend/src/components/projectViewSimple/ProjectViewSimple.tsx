@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PhotoProject } from '../../types/types';
+import { PhotoProject } from '../../../../shared/types';
 
 interface ProjectPreviewSimpleProps {
   project: PhotoProject;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoProject } from '../../types/types';
+import { PhotoProject } from '../../../../shared/types';
 
 interface ThreeColumnGridProps {
   project: PhotoProject;

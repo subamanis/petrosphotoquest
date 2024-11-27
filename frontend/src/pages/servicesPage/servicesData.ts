@@ -1,4 +1,4 @@
-import { Service } from '../../types/types.ts';
+import { Service } from '../../../../shared/types.ts';
 
 export const services: Service[] = [
   {
