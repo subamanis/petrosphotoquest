@@ -12,19 +12,8 @@ const ServicesPage = () => {
   const serviceApi = useServiceApi();
 
   useEffect(() => {
-    console.log('HELLOOOOOO WOOOOOOORL');
-    
-  }, []);
-
-  useEffect(() => {
-    console.log('use effect');
-    
     serviceApi.getAll().then((response) => {
-    console.log('isnide then');
-
       if (response.ok) {
-        console.log('response: ', response);
-        
         response.json().then((data) => {
           setServices(data);
         });
@@ -33,8 +22,6 @@ const ServicesPage = () => {
       }
     }).finally(() => {
       setLoading(false);
-      console.log('finally services: ', services);
-
     });
   }, []);
 
